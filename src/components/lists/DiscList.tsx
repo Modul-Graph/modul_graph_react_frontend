@@ -15,7 +15,7 @@ export const DiscList = (props: ListProps) => {
  * @param props Same as @mui/material ListItemProps
  */
 export const DiscListItem = (props: ListItemProps) => {
-    return <ListItem disablePadding {...props} sx={{...props.sx, display: "list-item", ml: 4, width: "unset"}}>
+    return <ListItem disablePadding {...props} sx={{...props.sx, display: "list-item", ml: 4}}>
         {props.children}
     </ListItem>
 }
