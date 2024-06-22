@@ -4,6 +4,7 @@ import {ThemeProvider} from '@mui/material/styles';
 import {Inter} from "next/font/google";
 
 import theme from "@/theme";
+import {Container} from "@mui/material";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -18,11 +19,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-            <html lang="en">
-            <body className={inter.className}>
+            <html lang="en" style={{height: "100%"}}>
+            <body className={inter.className} style={{height: "100%", padding: 0, margin: 0}}>
             <AppRouterCacheProvider>
                 <ThemeProvider theme={theme}>
-                    {children}
+                    <Container maxWidth={'lg'} sx={{height: 1}}>
+                        {children}
+                    </Container>
                 </ThemeProvider>
             </AppRouterCacheProvider>
 
