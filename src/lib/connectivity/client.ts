@@ -1,13 +1,19 @@
 import {Zodios} from "@zodios/core";
-import getConfig from "next/config"
-import {PublicRuntimeConfigType} from "@/lib/nextConfigTypes";
-import GetDoabilityForStandardCurriculum from "@/lib/connectivity/requests/doability";
+import doabilityResponseSchema from "@/lib/zod/doabilityResponseSchema";
+import {getClientEnvironment} from "@/lib/zod/environment";
 
-const {publicRuntimeConfig}: {publicRuntimeConfig: PublicRuntimeConfigType} = getConfig()
+
+const API_URL = getClientEnvironment().NEXT_PUBLIC_API_URL
 
 const apiClient = new Zodios(
-    publicRuntimeConfig.API_URL,
-    [GetDoabilityForStandardCurriculum]
+    API_URL,
+    [{
+        method: "get",
+        path: "/doability/:standardCurriculum",
+        requestFormat: "json",
+        response: doabilityResponseSchema,
+        alias: "getDoability"
+    }]
 )
 
 export default apiClient
