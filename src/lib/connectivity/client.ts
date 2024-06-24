@@ -9,7 +9,7 @@ const apiClient = new Zodios(
     API_URL,
     [{
         method: "get",
-        path: "/doability/:standardCurriculum",
+        path: "/sc/:standardCurriculum/doability",
         requestFormat: "json",
         response: doabilityResponseSchema,
         alias: "getDoability"
