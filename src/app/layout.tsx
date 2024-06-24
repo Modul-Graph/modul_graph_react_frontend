@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
     return (
             <html lang="en" style={{height: "100%"}}>
-            <body className={inter.className} style={{height: "100%", padding: 0, margin: 0}}>
+            <body className={inter.className} style={{height: "100%", padding: 0, margin: 0, overflowX: "hidden"}}>
             <AppRouterCacheProvider>
                 <ThemeProvider theme={theme}>
                     <Container maxWidth={'lg'} sx={{height: 1}}>
