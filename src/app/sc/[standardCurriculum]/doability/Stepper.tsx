@@ -24,7 +24,7 @@ const _DoabilityStepper = ({standardCurriculum}: DoabilityStepperProps) => {
 
     useEffect(() => {
         if (slideNo === 1) {
-            apiClient.getDoability({queries: {sc: standardCurriculum}}).then((data) => {
+            apiClient.getDoability({params: {standardCurriculum}}).then((data) => {
                 setData(data)
                 dispatcher("next")
             })

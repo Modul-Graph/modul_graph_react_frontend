@@ -3,7 +3,7 @@ import DoabilityStepper from "@/app/sc/[standardCurriculum]/doability/Stepper";
 
 const DoabilityPage = ({params}: { params: RouteType }) => {
     const {standardCurriculum} = params
-    return <DoabilityStepper standardCurriculum={decodeURIComponent(standardCurriculum)}/>
+    return <DoabilityStepper standardCurriculum={standardCurriculum}/>
 
 }
 
