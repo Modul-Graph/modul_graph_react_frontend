@@ -23,6 +23,7 @@
     "@zodios/react": "^10.4.5",
     "axios": "^1.7.2",
     "framer-motion": "^11.2.11",
+    "js-confetti": "^0.12.0",
     "next": "^14.2.4",
     "react": "^18.3.1",
     "react-chrome-dino-ts": "^0.1.2",
