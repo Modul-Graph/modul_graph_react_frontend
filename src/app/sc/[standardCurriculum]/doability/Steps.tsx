@@ -47,10 +47,10 @@ export const Step = ({children, onAnimationComplete}: { children: ReactNode, onA
 
 export const Step1 = ({standardCurriculumName}: StepsProps) => {
     return <Paper>
-        <Grid container sx={{height: 1}} padding={2}>
+        <Grid container sx={{height: 1}} padding={2} gap={2}>
             <Grid item xs={12}>
-                <Typography variant={"h3"}>
-                    {`Machbarkeitsanalyse für "${standardCurriculumName}"`}
+                <Typography variant={"h5"}>
+                    {`Machbarkeitsanalyse für Regelstudienplan "${standardCurriculumName}"`}
                 </Typography>
             </Grid>
             <Grid item>
