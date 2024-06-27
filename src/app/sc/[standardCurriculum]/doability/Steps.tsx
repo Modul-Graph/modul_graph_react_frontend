@@ -100,7 +100,7 @@ export const Step2 = ({standardCurriculumName}: StepsProps) => {
 
 export const Step3 = ({status, message}: Step3Props) => {
     return <Box display={"flex"} alignItems={"center"} justifyContent={"center"} height={1}>
-        <Alert severity={status}>
+        <Alert sx={{whiteSpace: "pre-wrap"}} severity={status}>
             <AlertTitle>
                 <Typography>{status[0].toUpperCase() + status.slice(1)}</Typography>
             </AlertTitle>
