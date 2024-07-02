@@ -1,7 +1,7 @@
 import {Grid} from "@mui/material";
 import {SelectCompetencies} from "@/components/select/SelectCompetencies";
 import {HeaderButtonGroup} from "@/components/buttons/HeaderButtonGroup";
-import {OuterSelectStudyProgram} from "@/components/select/OuterSelectStudyProgram";
+import {ButtonSelectStudyProgram} from "@/components/buttons/ButtonSelectStudyProgram";
 import {HeaderTitle} from "@/components/dashboardHeader/HeaderTitle";
 import {HeaderButtonAnalysis} from "@/components/buttons/HeaderButtonAnalysis";
 
@@ -23,7 +23,7 @@ export const TeacherHeaderGrid = () => {
                                 <HeaderButtonAnalysis/>
                             </Grid>
                             <Grid item xs={12} sm={6} md={3} lg={2.5}>
-                                <OuterSelectStudyProgram></OuterSelectStudyProgram>
+                                <ButtonSelectStudyProgram></ButtonSelectStudyProgram>
                             </Grid>
                         </Grid>
     )
