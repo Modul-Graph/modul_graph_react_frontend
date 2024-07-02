@@ -57,7 +57,7 @@ export const SelectCompetencies = () => {
 
 
             <>
-                <FormControl sx={{m: 1, width: 250}}>
+                <FormControl sx={{m: 1, width: 250}} size="small">
                     <InputLabel color={"secondary"} >Kompetenzen auswählen</InputLabel>
                     <Select
                             multiple
