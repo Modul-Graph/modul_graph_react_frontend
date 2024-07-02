@@ -17,6 +17,7 @@ export const ButtonSelectStudyProgram = () => {
     return (
             <ButtonGroup
                     variant="contained"
+                    disableElevation={true}
 
             >
                 <Button onClick={handleClick}>Studiengang</Button>
