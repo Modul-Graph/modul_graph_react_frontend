@@ -7,7 +7,7 @@ import {TeacherHeaderGrid} from "@/components/dashboardHeader/TeacherHeaderGrid"
 
 export const TeacherHeader = () => {
     return (
-            <GenericHeader child={<TeacherHeaderGrid/>}></GenericHeader>
+            <GenericHeader title="Studienverlaufsplan" child={<TeacherHeaderGrid/>}></GenericHeader>
     )
 
 }
