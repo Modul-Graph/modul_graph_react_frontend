@@ -4,6 +4,10 @@ import {HeaderButtonGroup} from "@/components/buttons/HeaderButtonGroup";
 import {ButtonSelectStudyProgram} from "@/components/buttons/ButtonSelectStudyProgram";
 import {HeaderButtonAnalysis} from "@/components/buttons/HeaderButtonAnalysis";
 
+/**
+ * responsive header grid layout for the teacher view with interactive components
+ * **/
+
 export const TeacherHeaderGrid = () => {
 
     return(
