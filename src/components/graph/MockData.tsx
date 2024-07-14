@@ -39,11 +39,13 @@ export const edges = [
         source: '006',
         target: '012',
         id: '006-012',
-    }, {
+    },
+    {
         source: '006',
         target: '020',
         id: '006-020',
-    }, {
+    },
+    {
         source: '006',
         target: '022',
         id: '006-022',
@@ -62,8 +64,7 @@ export const edges = [
         source: '004',
         target: '010',
         id: '004-010',
-    }
-    ,
+    },
     {
         source: '010',
         target: '013',
@@ -73,31 +74,38 @@ export const edges = [
         source: '013',
         target: '020',
         id: '013-020',
-    }, {
+    },
+    {
         source: '017',
         target: '021',
         id: '017-021',
-    }, {
+    },
+    {
         source: '002',
         target: '016',
         id: '002-016',
-    }, {
+    },
+    {
         source: '007',
         target: '020',
         id: '007-020',
-    }, {
+    },
+    {
         source: '005',
         target: '014',
         id: '005-014',
-    }, {
+    },
+    {
         source: '013',
         target: '024',
         id: '013-024',
-    }, {
+    },
+    {
         source: '002',
         target: '024',
         id: '002-024',
-    }, {
+    },
+    {
         source: '006',
         target: '024',
         id: '013-024',

@@ -24,7 +24,7 @@ export interface CustomNode {
 export interface CustomEdge {
     source: string,
     target: string,
-    id: string
+    id: string,
 }
 
 export interface LayoutFactoryProps {
