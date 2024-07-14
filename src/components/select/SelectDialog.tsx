@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {SelectStudyProgram} from "@/components/select/SelectStudyProgram";
 import {SelectSPO} from "@/components/select/SelectSPO";
 
-export const SelectDialog = ({open, setOpen}: SelectInDialogProps) => {
+export const SelectDialog = ({open, setOpen}: SelectDialogProps) => {
 
     const handleClose = (event: React.SyntheticEvent<unknown>, reason?: string) => {
         if (reason !== 'backdropClick') {
@@ -35,7 +35,7 @@ export const SelectDialog = ({open, setOpen}: SelectInDialogProps) => {
     );
 }
 
-type SelectInDialogProps = {
+type SelectDialogProps = {
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
