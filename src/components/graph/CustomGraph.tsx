@@ -31,10 +31,10 @@ export const CustomGraph = ({nodes, edges}: CustomGraphProps) => {
                             if (!node || !node.rowID) return {x: 0, y: 0, z: 1};
 
                             const columns = 4; // todo: set to 7 semesters
-                            const columnWidth = 200; // Width of each column
-                            const columnMargin = 50; // Margin between columns
-                            const columnStartX = 50; // Starting X position for the first column
-                            const rowHeight = 100; // Height of each row
+                            const columnWidth = 100; // Width of each column
+                            const columnMargin = 20; // Margin between columns
+                            const columnStartX = 100; // Starting X position for the first column
+                            const rowHeight = 50; // Height of each row
 
                             const columnX = columnStartX + (node.sem) * (columnWidth + columnMargin);
                             const columnCenterY = (columns * rowHeight) / 2;
