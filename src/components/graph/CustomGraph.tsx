@@ -23,6 +23,8 @@ export const CustomGraph = ({nodes, edges}: CustomGraphProps) => {
             <GraphCanvas
                     nodes={nodes}
                     edges={edges}
+                    edgeArrowPosition="end"
+                    edgeInterpolation="curved"
                     layoutType={"custom"}
                     layoutOverrides={{
                         getNodePosition: (id: string, {nodes}: CustomNodePositionArgs) => {
