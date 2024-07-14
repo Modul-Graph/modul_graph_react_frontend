@@ -4,6 +4,7 @@ import {CustomNodePositionArgs} from "@/components/graph/ICustomLayout";
 import React from "react";
 import {CustomEdge, CustomNode} from "@/components/graph/ICustomLayout";
 import {convertNodes} from "@/components/graph/NodeRowAssignment";
+import {myTheme} from "@/components/graph/ITheme";
 
 /**
  * implements a custom layout defined by semesters and renders module graph
@@ -18,11 +19,14 @@ export const CustomGraph = ({nodes, edges}: CustomGraphProps) => {
 
     convertNodes(nodes, edges);
 
+
+
     return (
 
             <GraphCanvas
                     nodes={nodes}
                     edges={edges}
+                    theme={myTheme}
                     edgeArrowPosition="end"
                     edgeInterpolation="curved"
                     layoutType={"custom"}
