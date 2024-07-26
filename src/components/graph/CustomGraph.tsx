@@ -17,7 +17,7 @@ export const CustomGraph = ({nodes, edges}: CustomGraphProps) => {
 
     // todo: backend anfrage
 
-    convertNodes(nodes, edges);
+    nodes = convertNodes(nodes, edges);
 
 
 
@@ -35,7 +35,10 @@ export const CustomGraph = ({nodes, edges}: CustomGraphProps) => {
                             const node = nodes.find(n => n.id === id);
                             // if node undefined
                             if (!node || !node.rowID) return {x: 0, y: 0, z: 1};
-
+                            console.log("===")
+                            console.log(id)
+                            console.log(node.rowID);
+                            console.log("===");
                             const columns = 4; // todo: set to 7 semesters
                             const columnWidth = 100; // Width of each column
                             const columnMargin = 20; // Margin between columns
@@ -48,7 +51,7 @@ export const CustomGraph = ({nodes, edges}: CustomGraphProps) => {
 
                             return {
                                 x: columnX,
-                                y: columnCenterY + node.rowID * rowHeight,
+                                y: columnCenterY - node.rowID * rowHeight,
                                 z: 1
                             };
 
