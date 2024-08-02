@@ -1,5 +1,5 @@
 'use client'
-import {CustomNode} from "@/components/graph/ICustomLayout";
+import {CustomNode} from "@/components/studyProgramGraph/ICustomLayout";
 import cloneDeep from "lodash/cloneDeep";
 
 /**
