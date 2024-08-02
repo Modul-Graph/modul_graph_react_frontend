@@ -2,10 +2,10 @@ import {TeacherHeader} from "@/components/dashboardHeader/TeacherHeader";
 import {TeacherFooter} from "@/components/dashboardFooter/TeacherFooter";
 import {Stack} from "@mui/material";
 import Box from "@mui/material/Box";
-import {CustomGraph} from "@/components/graph/CustomGraph";
-import {edges, nodes} from "@/components/graph/MockData";
+import {CustomGraph} from "@/components/studyProgramGraph/CustomGraph";
+import {edges, nodes} from "@/components/studyProgramGraph/MockData";
 /**
- * renders teacher view with functionalities and module graph
+ * renders teacher view with functionalities and module studyProgramGraph
  * */
 export default function TeacherViewPage() {
     return (

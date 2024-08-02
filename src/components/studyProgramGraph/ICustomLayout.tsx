@@ -39,9 +39,9 @@ export interface CustomNodePositionArgs {
     // Any dragged nodes
     //drags?: DragReferences;
 
-    //nodes for the graph.
+    //nodes for the studyProgramGraph.
     nodes: CustomNode[];
 
-    //edges for the graph.
+    //edges for the studyProgramGraph.
     edges: CustomEdge[];
 }
