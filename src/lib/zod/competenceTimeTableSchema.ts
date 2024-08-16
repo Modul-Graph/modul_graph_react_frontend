@@ -23,3 +23,5 @@ export const competenceTimeTableSchema = z.object({
 
 export type CompetenceTimeTableType = z.infer<typeof competenceTimeTableSchema>
 
+export type WPFEntry = CompetenceTimeTableType["WPF"][0]
+
