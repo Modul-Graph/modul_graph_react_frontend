@@ -19,8 +19,9 @@ export const SelectSPO = () => {
             <>
 
                 <FormControl sx={{m: 1, minWidth: 220}}>
-                    <InputLabel>Studienprügungsordnung</InputLabel>
+                    <InputLabel>Studienprüfungsordnung</InputLabel>
                     <Select
+                            variant={"filled"}
                             value={studyPO}
                             onChange={handleChange}
                             input={<OutlinedInput label="Studienprüfungsordnung"/>}
