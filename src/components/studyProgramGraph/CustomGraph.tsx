@@ -14,11 +14,16 @@ type CustomLayoutInputs = LayoutOverrides & {
  * implements a custom layout defined by semesters and renders module studyProgramGraph
  * */
 
+export class CustomLayoutInputs {
+}
+
+export const CustomGraph = ({nodes, edges}: CustomGraphProps) => {
 export const CustomGraph = ({nodes, edges, onClick}: CustomGraphProps) => {
 
     // todo: backend anfrage
 
     nodes = convertNodes(nodes);
+
 
 
     return (
