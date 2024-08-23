@@ -6,6 +6,10 @@ import {CompetencyGraphSkeleton} from "@/components/placeholder/CompetencyGraphS
 import Button from "@mui/material/Button";
 import {CompetencyGraph} from "@/components/competencyGraph/CompetencyGraph";
 
+/**
+* modal popup with competency graph
+ * */
+
 export const GraphModal = ({open, setOpen}:GraphModalProps) => {
     const isLoading = true;
     //const [open, setOpen] = React.useState(false);
@@ -27,6 +31,7 @@ export const GraphModal = ({open, setOpen}:GraphModalProps) => {
 
     return (
             <>
+                {/*todo: delete button a*/}
                 <Button onClick={handleOpen}>Open modal</Button>
                 <Modal
                         open={open}
