@@ -10,7 +10,7 @@ import {myTheme} from "@/components/studyProgramGraph/ITheme";
  * implements a custom layout defined by semesters and renders module studyProgramGraph
  * */
 
-class CustomLayoutInputs {
+export class CustomLayoutInputs {
 }
 
 export const CustomGraph = ({nodes, edges}: CustomGraphProps) => {
