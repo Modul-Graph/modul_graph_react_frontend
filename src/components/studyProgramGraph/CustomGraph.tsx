@@ -14,8 +14,6 @@ type CustomLayoutInputs = LayoutOverrides & {
  * implements a custom layout defined by semesters and renders module studyProgramGraph
  * */
 
-
-
 export const CustomGraph = ({nodes, edges, onClick}: CustomGraphProps) => {
 
     // todo: backend anfrage
@@ -40,7 +38,7 @@ export const CustomGraph = ({nodes, edges, onClick}: CustomGraphProps) => {
                             // if node undefined
                             if (!node || !node.rowID) return {x: 0, y: 0, z: 1};
 
-                            const columns = 4; // todo: set to 7 semesters
+                            const columns = 7; // 7 semesters
                             const columnWidth = 100; // Width of each column
                             const columnMargin = 20; // Margin between columns
                             const columnStartX = 100; // Starting X position for the first column
