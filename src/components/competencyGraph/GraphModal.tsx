@@ -1,32 +1,28 @@
 "use client"
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import {CompetencyGraphSkeleton} from "@/components/placeholder/CompetencyGraphSkeleton";
 import Button from "@mui/material/Button";
 import {CompetencyGraph} from "@/components/competencyGraph/CompetencyGraph";
+import {data} from "@/components/competencyGraph/MockData2";
+import {Paper} from "@mui/material";
 
 /**
 * modal popup with competency graph
  * */
 
-export const GraphModal = ({open, setOpen}:GraphModalProps) => {
+export const GraphModal = () => {
     const isLoading = true;
-    //const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const style = {
         position: 'absolute' as 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
         width: "auto",
-        minWidth: 300,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
+        minWidth: '50vw',
+        minHeight: '50vh',
+        padding: '2rem',
     };
 
     return (
@@ -36,14 +32,19 @@ export const GraphModal = ({open, setOpen}:GraphModalProps) => {
                 <Modal
                         open={open}
                         onClose={handleClose}
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
 
                 >
-                    <Box sx={style}>
+                    <Paper elevation={3} sx={style}>
                         {isLoading ?
                                 <CompetencyGraphSkeleton/>
-                                : <CompetencyGraph/>
+                                : <CompetencyGraph wpfEntry={data}/>
                         }
-                    </Box>
+                    </Paper>
                 </Modal>
             </>
     )
