@@ -1,7 +1,5 @@
 import {lightTheme} from "reagraph";
 
-import {grey} from "@mui/material/colors"
-
 export type ThemeColor = number | string;
 export type ColorRepresentation = number | string;
 
@@ -70,7 +68,6 @@ export const myTheme = {
 
     canvas: {
         ...lightTheme.canvas,
-    background: grey["50"]
 
   },
 
