@@ -1,34 +1,7 @@
-//todo: delete schema
-import {z} from "zod";
-
-const competenceSchema = z.string().min(1, "Competence must not be empty")
-const moduleNameSchema = z.string().min(1, "Module/WPF name must not be empty")
-
-export const competenceTimeTableSchema = z.object({
-    pflichtmodule: z.array(z.object({
-        name: moduleNameSchema,
-        competences: z.array(competenceSchema),
-        semester: z.number().int().min(1, "Semester must be at least 1"),
-    })),
-    WPF: z.array(
-        z.object({
-            name: moduleNameSchema,
-            modules: z.array(z.object({
-                name: moduleNameSchema,
-                competences: z.array(competenceSchema)
-            })),
-            semesters: z.array(z.number().int().min(1, "Semester must be at least 1"))
-        })
-    )
-})
-
-export type CompetenceTimeTableType = z.infer<typeof competenceTimeTableSchema>
-
-export type WPFEntry = CompetenceTimeTableType["WPF"][0]
+import {WPFEntry} from "@/lib/zod/competenceTimeTableSchema";
 
 
-
-export const data = [
+export const data: WPFEntry =
     {
         name: 'ModuleArea A',
         modules: [
@@ -42,17 +15,6 @@ export const data = [
             }
         ],
         semesters: [1, 2]
-    },
-    {
-        name: 'ModuleArea B',
-        modules: [
-            {
-                name: 'Submodule B1',
-                competences: ['Competence 3', 'Competence 4']
-            }
-        ],
-        semesters: [1]
-    }
-];
+    };
 
 
