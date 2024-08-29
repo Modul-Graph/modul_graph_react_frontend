@@ -3,20 +3,23 @@
 import {GraphCanvas} from "reagraph";
 import {myTheme} from "@/components/studyProgramGraph/ITheme";
 import React from "react";
-import {CustomLayoutInputs} from "@/components/studyProgramGraph/CustomGraph";
 import {ColoredNodePositionArgs} from "@/components/competencyGraph/ICompetencyGraph";
 import {makeNodesNEdges} from "@/components/competencyGraph/NodeEdgeAssignment";
-import {data} from "@/components/competencyGraph/MockData2";
+import {WPFEntry} from "@/lib/zod/competenceTimeTableSchema";
 
 /**
  * implements a custom layout defined by competency nodes connected to modules
  * */
 
-export const CompetencyGraph = () => {
+export const CompetencyGraph = ({wpfEntry}: {wpfEntry: WPFEntry}) => {
 
     // todo: backend anfrage zod
-    const [nodes,edges] = makeNodesNEdges(data);
 
+    const [nodes,edges] = makeNodesNEdges(wpfEntry);
+
+    class CustomLayoutInputs {
+        
+    }
 
     return (
 
@@ -41,7 +44,6 @@ export const CompetencyGraph = () => {
 
                             const columnX = columnStartX + (node.colID) * (columnWidth + columnMargin);
                             const columnCenterY = (columns * rowHeight) / 2;
-
 
                             return {
                                 x: columnX,
