@@ -18,7 +18,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-            <html lang="en" style={{height: "100%"}}>
+            <html lang="en" style={{height: "100%", background: "#fff"}}>
             <body className={inter.className} style={{height: "100%", margin: 0, padding: 0}}>
             <AppRouterCacheProvider>
                 <ThemeProvider theme={theme}>
