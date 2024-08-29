@@ -1,16 +1,13 @@
-import {competenceTimeTableSchema, CompetenceTimeTableType} from "@/components/competencyGraph/MockData2";
 import {ColoredEdge, ColoredNode} from "@/components/competencyGraph/ICompetencyGraph";
 import {red,pink,purple,blue,green,yellow,orange, grey} from "@mui/material/colors"
+import { WPFEntry} from "@/lib/zod/competenceTimeTableSchema";
 
 /**
  * create from backend data Competency Nodes, Module Nodes and Edges; color nodes
  */
 
 
-export const makeNodesNEdges = ({data}: NodeColorAssignmentProps) => {
-    // validate incoming data
-    const parsedData = competenceTimeTableSchema.parse(data);
-
+export const makeNodesNEdges = (data: WPFEntry): [ColoredNode[], ColoredEdge[]] => {
     // set containing all unique competences
     const competencesSet: Set<string> = new Set();
 
@@ -22,38 +19,32 @@ export const makeNodesNEdges = ({data}: NodeColorAssignmentProps) => {
 
 
     // loop through parsed data and extract competences
-    for (const moduleEntry of parsedData) {
-        for (const module of moduleEntry.modules) {
-            modulesSet.add(module.name); //add module names
-            for (const competence of module.competences) {
+    for (const moduleEntry of data.modules) {
+        modulesSet.add(moduleEntry.name); //add module names
+        for (const competence of moduleEntry.competences) {
                 competencesSet.add(competence); // add competency names
                 // add competencies with corresponding module
-                competencesWithModules.push([competence, module.name]);
+                competencesWithModules.push([competence, moduleEntry.name]);
             }
-        }
     }
 
     // create nodes
     const nodes: ColoredNode[]=[];
-    let rowIDcounter = 0;
 
     //colors for nodes
     const colors= [red[300], green[300], yellow[300], blue[300], pink[300], orange[300], purple[300]];
 
     // create competency nodes
     // CompetencyNode - color: different, colID: 1
-    competencesSet.forEach((value) => {
-        rowIDcounter++;
-        const color=colors[rowIDcounter%7]; // pick color
-        nodes.push({id: `${value}`, label: `${value}`, fill: color, colID: 1, rowID: rowIDcounter});
+    Array.from(competencesSet).forEach((value, index) => {
+        const color=colors[index%7]; // pick color
+        nodes.push({id: `${value}`, label: `${value}`, fill: color, colID: 1, rowID: index+1});
     });
 
-    rowIDcounter = 0;// reset counter
     //create module nodes
     // ModuleNode - color: grey, colID: 2
-    modulesSet.forEach((value) => {
-        nodes.push({id: `${value}`, label: `${value}`, fill: grey[300], colID: 2, rowID: rowIDcounter});
-        rowIDcounter++;
+    Array.from(modulesSet).forEach((value, index) => {
+        nodes.push({id: `${value}`, label: `${value}`, fill: grey[300], colID: 2, rowID: index+1});
     });
 
     //create edges
@@ -63,13 +54,8 @@ export const makeNodesNEdges = ({data}: NodeColorAssignmentProps) => {
     for (let i = 0; i < competencesWithModules.length; i++) {
     const [competence, module] = competencesWithModules[i];
     edges.push({ source:`${competence}`, target:`${module}`, id:`${competence}-${module}`});
-    rowIDcounter++;
 }
 
     return [nodes,edges];
 
-}
-
-type NodeColorAssignmentProps = {
-    data: CompetenceTimeTableType
 }
