@@ -11,10 +11,10 @@ import {Paper} from "@mui/material";
 * modal popup with competency graph
  * */
 
-export const GraphModal = () => {
+export const GraphModal = ({open, setOpen}:GraphModalProps) => {
+    // todo: backend anfrage, dynamic loading
     const isLoading = true;
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+
     const handleClose = () => setOpen(false);
 
     const style = {
@@ -27,8 +27,7 @@ export const GraphModal = () => {
 
     return (
             <>
-                {/*todo: delete button a*/}
-                <Button onClick={handleOpen}>Open modal</Button>
+
                 <Modal
                         open={open}
                         onClose={handleClose}
