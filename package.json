@@ -32,6 +32,7 @@
     "react-dom": "^18",
     "reagraph": "^4.19.2",
     "swr": "^2.2.5",
+    "usehooks-ts": "^3.1.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
