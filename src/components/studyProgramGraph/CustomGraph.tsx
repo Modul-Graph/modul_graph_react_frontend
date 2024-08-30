@@ -5,6 +5,7 @@ import React, {forwardRef, Ref} from "react";
 import {CustomEdge, CustomNode} from "@/components/studyProgramGraph/ICustomLayout";
 import {convertNodes} from "@/components/studyProgramGraph/NodeRowAssignment";
 import {myTheme} from "@/components/studyProgramGraph/ITheme";
+import {useEventCallback, useInterval} from "usehooks-ts";
 
 type CustomLayoutInputs = LayoutOverrides & {
     getNodePosition: (id: string, args: CustomNodePositionArgs) => { x: number, y: number, z: number };
@@ -16,7 +17,7 @@ type CustomLayoutInputs = LayoutOverrides & {
 
 const _CustomGraph = ({nodes, edges, onClick}: CustomGraphProps, ref: Ref<GraphCanvasRef> ) => {
 
-    // todo: backend anfrage
+    // todo: backend anfrage bzw props von vorheriger anfrage von PageView
 
     nodes = convertNodes(nodes);
 
@@ -26,8 +27,8 @@ const _CustomGraph = ({nodes, edges, onClick}: CustomGraphProps, ref: Ref<GraphC
                     ref={ref}
                     nodes={nodes}
                     edges={edges}
-
                     theme={myTheme}
+                    animated={false}
                     onNodeClick={(nodes) => onClick(nodes as unknown as CustomNode)}
                     edgeArrowPosition="end"
                     edgeInterpolation="curved"
@@ -57,7 +58,10 @@ const _CustomGraph = ({nodes, edges, onClick}: CustomGraphProps, ref: Ref<GraphC
                         }
                     } as CustomLayoutInputs
                     }
-                    draggable={true}
+                    draggable={false}
+                    disabled={true}
+                    minDistance={2500}
+                    maxDistance={2750}
             />
     );
 }
