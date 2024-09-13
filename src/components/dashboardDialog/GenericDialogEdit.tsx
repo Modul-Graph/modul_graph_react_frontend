@@ -1,29 +1,16 @@
-'use client'
+
 import * as React from 'react';
-import {Box, Button, IconButton} from '@mui/material';
+import {Box, IconButton} from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import {CloseIcon} from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
 
-export default function GenericDialog({title, children, buttons}:GenericDialogProps) {
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-
+export default function GenericDialogEdit({open, setOpen, handleClickOpen, handleClose, openButton ,title, children, buttons}:GenericDialogProps) {
     return (
             <React.Fragment>
-                <Button variant="contained"  onClick={handleClickOpen}>
-                    {title}
-                </Button>
+                {openButton}
                 <Dialog
                         open={open}
                         onClose={handleClose}
@@ -60,4 +47,4 @@ export default function GenericDialog({title, children, buttons}:GenericDialogPr
     );
 }
 
-type GenericDialogProps = {title:string, children:React.ReactNode, buttons:React.ReactNode}
+type GenericDialogProps = {open:boolean, setOpen:(state: boolean)=>void, handleClickOpen: () => void, handleClose: () => void, openButton: React.ReactNode ,title:string, children:React.ReactNode, buttons:React.ReactNode}
