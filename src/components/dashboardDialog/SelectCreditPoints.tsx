@@ -6,24 +6,22 @@ import React from "react";
 
 
 
-export default function SelectCreditPoints() {
-    const [ creditPoints, setCreditPoints] = React.useState<string[]>([]);
-    console.log(  creditPoints);
+export default function SelectCreditPoints({creditPointsVal, setCreditPoints}: CreditPointsProps) {
 
     return (
                 <Autocomplete
                         multiple
                         id="tags-filled"
                         options={[]}
-                        defaultValue={[]}
-                        sx={{ m: 1, width: 300, mt: 3 }}
+                        value={creditPointsVal}
+                        onChange={(e, v) => {setCreditPoints(v)}}
+                        sx={{ m: 1, mt: 3 }}
                         freeSolo
                         renderTags={(
-                                value: any[],
+                                value,
                                 getTagProps: (arg0: { index: any }) => JSX.IntrinsicAttributes
                         ) =>
-                                value.map((option: any, index: any) => {
-                                    setCreditPoints(value);
+                                value.map((option, index) => {
                                     return (
                                             <Chip
                                                     key={index}
@@ -43,3 +41,5 @@ export default function SelectCreditPoints() {
                 />
     )
 }
+
+type CreditPointsProps = {creditPointsVal: string[], setCreditPoints: (cps: string[])=>void}

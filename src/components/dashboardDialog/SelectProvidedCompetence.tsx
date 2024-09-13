@@ -1,4 +1,3 @@
-'use client'
 
 import {InputLabel, MenuItem, OutlinedInput} from "@mui/material";
 import React from "react";
@@ -9,59 +8,25 @@ import Checkbox from '@mui/material/Checkbox';
 import theme from "@/theme";
 
 
-export default function SelectCompetencies () {
+export default function SelectProvidedCompetencies ({competences, providedCompetenceName, setProvidedCompetenceName}: ProvidedCompetencesProps) {
 
-    const competences = ['Algorithmen und Datenstrukturen',
-        'Analysis',
-        'Numerik',
-        'Betriebssysteme',
-        'Datenbanken und Informationssysteme',
-        'Digitaltechnik und Rechnerorganisation',
-        'Diskrete Strukturen',
-        'Logik',
-        'Algebra',
-        'lineare Algebra',
-        'Formale Sprachen und Automaten',
-        'Informatik als Disziplin',
-        'Informatik und Gesellschaft',
-        'IT-Sicherheit',
-        'Mensch-Computer-Interaktion',
-        'Modellierung',
-        'Programmiersprachen und -methodik',
-        'Projekt- und Teamkompetenz',
-        'Rechnernetze und verteilte Systeme',
-        'Software-Engineering',
-        'Wahrscheinlichkeitstheorie',
-        'Statistik',
-        'Topologie',
-        'Differentialgeometrie',
-        'Robotik',
-        'Künstliche Intelligenz',
-        'Analytische Geometrie'];
-
-
-    const [competenceName, setCompetenceName] = React.useState<string[]>([]);
-
-    const handleChange = (event: SelectChangeEvent<typeof competenceName>) => {
+    const handleChange = (event: SelectChangeEvent<typeof providedCompetenceName>) => {
         const {
             target: {value},
         } = event;
-        setCompetenceName(
+        setProvidedCompetenceName(
                 // On autofill we get a stringified value.
                 typeof value === 'string' ? value.split(',') : value,
         );
     };
 
-
     return (
-
-
             <>
                 <FormControl sx={{m: 1, width: 250}} size="small">
                     <InputLabel color={"secondary"} >bereitgestellte Kompetenzen</InputLabel>
                     <Select
                             multiple
-                            value={competenceName}
+                            value={providedCompetenceName}
                             onChange={handleChange}
                             renderValue={(selected) => selected.join(', ')}
                             input={<OutlinedInput label="Kompetenz" sx={{
@@ -75,7 +40,7 @@ export default function SelectCompetencies () {
                                 <MenuItem
                                         key={competence} value={competence}
                                 >
-                                    <Checkbox checked={competenceName.indexOf(competence) > -1}/>
+                                    <Checkbox checked={providedCompetenceName.indexOf(competence) > -1}/>
                                     <ListItemText primary={competence}/>
                                 </MenuItem>
                         ))}
@@ -85,4 +50,4 @@ export default function SelectCompetencies () {
     )
 }
 
-//type SelectCompetenciesProp = title, array comps
+type ProvidedCompetencesProps = {competences: string[], providedCompetenceName: string[], setProvidedCompetenceName: (comp: string[])=>void}

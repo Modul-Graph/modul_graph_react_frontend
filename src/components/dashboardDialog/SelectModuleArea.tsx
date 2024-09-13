@@ -4,6 +4,9 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Switch from '@mui/material/Switch';
+import {FormControlLabel, FormGroup} from "@mui/material";
+
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -16,13 +19,6 @@ const MenuProps = {
     },
 };
 
-const names = [
-    'Informatik 1 - Pflicht',
-    'Informatik 2 - Pflicht',
-    'Informatik Wahlpflicht',
-    'Technische Informatik',
-    'Mathematik/ Theoretische Informatik'
-];
 
 function getStyles(name: string, moduleName: readonly string[], theme: Theme) {
     return {
@@ -33,27 +29,39 @@ function getStyles(name: string, moduleName: readonly string[], theme: Theme) {
     };
 }
 
-export default function SelectModuleArea() {
+export default function SelectModuleArea({selectionModulArea, moduleAreaName, setModuleAreaName, compulsoryModule, setCompulsoryModule}: ModuleAreaProps ) {
     const theme = useTheme();
-    const [moduleName, setModuleName] = React.useState<string[]>([]);
 
-    const handleChange = (event: SelectChangeEvent<typeof moduleName>) => {
+    //State Management for the Select
+    const handleChange = (event: SelectChangeEvent<typeof moduleAreaName>) => {
         const {
             target: { value },
         } = event;
-        setModuleName(
+        setModuleAreaName(
                 // On Autofill we get a stringified value.
                 typeof value === 'string' ? value.split(',') : value,
         );
     };
 
+    //State Management for the switch
+       const handleChangeSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCompulsoryModule(event.target.checked);
+
+    };
+
     return (
             <div>
                 <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
+                    <FormGroup>
+                        <FormControlLabel control={ <Switch
+                                checked={compulsoryModule}
+                                onChange={handleChangeSwitch}
+                                inputProps={{ 'aria-label': 'controlled' }}/>} label="Pflichtmodul" />
+                    </FormGroup>
                     <Select
                             multiple
                             displayEmpty
-                            value={moduleName}
+                            value={moduleAreaName}
                             onChange={handleChange}
                             input={<OutlinedInput />}
                             renderValue={(selected) => {
@@ -64,16 +72,16 @@ export default function SelectModuleArea() {
                                 return selected.join(', ');
                             }}
                             MenuProps={MenuProps}
-                            inputProps={{ 'aria-label': 'Without label' }}
+                            inputProps={{ 'aria-label': 'Without label' , disabled: compulsoryModule }}
                     >
                         <MenuItem disabled value="">
                             <em>Placeholder</em>
                         </MenuItem>
-                        {names.map((name) => (
+                        {selectionModulArea.map((name) => (
                                 <MenuItem
                                         key={name}
                                         value={name}
-                                        style={getStyles(name, moduleName, theme)}
+                                        style={getStyles(name, moduleAreaName, theme)}
                                 >
                                     {name}
                                 </MenuItem>
@@ -83,3 +91,5 @@ export default function SelectModuleArea() {
             </div>
     );
 }
+
+type ModuleAreaProps = {selectionModulArea: string[], moduleAreaName: string[], setModuleAreaName: (state: string[])=>void, compulsoryModule: boolean, setCompulsoryModule: (state: boolean)=>void};
