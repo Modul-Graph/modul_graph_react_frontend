@@ -1,22 +1,17 @@
 import GenericDialog from "@/components/dashboardDialog/GenericDialog";
-import TextField from "@mui/material/TextField";
 import * as React from "react";
-import {Button} from "@mui/material";
-import Autocomplete from '@mui/material/Autocomplete';
+import {SearchModuleDelete} from "@/components/dashboardDialog/SearchModuleDelete";
+import ButtonDeleteDialog from "@/components/buttons/ButtonDeleteDialog";
 
 export const DialogDelete = () =>
 {
+    const modules = ["Einführung in die Informatik" , "Sichere Systeme", "Mathe 1", "Mathe 2", "Visualisierung",
+        "Mathe 3"];
+    const [value, setValue] = React.useState<string | null>("");
+    const [inputValue, setInputValue] = React.useState("");
 
-    return(<GenericDialog title={"Modul löschen"} buttons={ <Button type="submit">aus Ansicht löschen</Button>}>
-            <Autocomplete
-                    //disablePortal
-                    id="combo-box-demo"
-                    options={modules}
-                    sx={{p:2, width: 300, maxHeight: 200, overflow: 'auto' }}
-                    renderInput={(params) => <TextField {...params} label="Modulname" />}
-            />
+    return(<GenericDialog title={"Modul löschen"} buttons={ <ButtonDeleteDialog moduleName={inputValue} moduleSelection={modules}/>}>
+           <SearchModuleDelete moduleSelection={modules} value={value} setValue={setValue} inputValue={inputValue} setInputValue={setInputValue}/>
     </GenericDialog>)
 }
 
-const modules = ["Einführung in die Informatik" , "Sichere Systeme", "Mathe 1", "Mathe 2", "Visualisierung",
-    "Mathe 3"];
