@@ -5,19 +5,22 @@ import {Grid} from "@mui/material";
 import {HeaderTitle} from "@/components/dashboardHeader/HeaderTitle";
 
 /**
- * renders title and child component in header
+ * renders title, child and menu component in header
  * **/
-export const GenericHeader = ({title, child}: GenericHeaderProps) => {
+export const GenericHeader = ({title, child, menu}: GenericHeaderProps) => {
     return (
             <Box sx={{flexGrow: 1}}>
                 <AppBar position="static">
                     <Toolbar>
-                        <Grid container rowSpacing={1} alignItems="center" direction={"row"} >
+                        <Grid container rowSpacing={1} alignItems="center" justifyContent={"space-between"} direction={"row"} >
 
                             <Grid item>
                                 <HeaderTitle title={title}/>
                             </Grid>
                             {child}
+                            <Grid item xs={0.4}>
+                                {menu}
+                            </Grid>
                         </Grid>
                     </Toolbar>
                 </AppBar>
@@ -27,5 +30,6 @@ export const GenericHeader = ({title, child}: GenericHeaderProps) => {
 
 type GenericHeaderProps = {
     title: string;
-    child: React.ReactNode
+    child: React.ReactNode;
+    menu: React.ReactNode
 }

@@ -5,10 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
 
-export const SelectSPO = () => {
-    const studyPOs = ["aktuelle SPO", "SPO 2017", "SPO 2023"];
-
-    const [studyPO, setStudyPO] = React.useState<string>('');
+export const SelectDialogSPO = ({studyPO, setStudyPO, selectionStudyPOs}: SelectSPOProps) => {
 
     const handleChange = (event: SelectChangeEvent<typeof studyPO>) => {
         setStudyPO(event.target.value as string);
@@ -26,7 +23,7 @@ export const SelectSPO = () => {
                             onChange={handleChange}
                             input={<OutlinedInput label="Studienprüfungsordnung"/>}
                     >
-                        {studyPOs.map((studyPO) => (
+                        {selectionStudyPOs.map((studyPO) => (
                                 <MenuItem key={studyPO} value={studyPO}>
                                     {studyPO}
                                 </MenuItem>
@@ -38,5 +35,5 @@ export const SelectSPO = () => {
     );
 }
 
-
+type SelectSPOProps ={studyPO: string, setStudyPO:(state: string)=>void, selectionStudyPOs: string[]}
 
