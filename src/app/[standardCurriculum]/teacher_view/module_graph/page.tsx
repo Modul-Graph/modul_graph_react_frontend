@@ -23,7 +23,7 @@ export default function TeacherViewModuleGraphPage() {
                     >
                     {isLoading ?
                             <GraphSkeleton/>
-                            : <CustomGraph nodes={nodes} edges={edges}></CustomGraph>
+                            : <CustomGraph onClick={() => null} nodes={nodes} edges={edges}></CustomGraph>
                         }
                     </Box>
 

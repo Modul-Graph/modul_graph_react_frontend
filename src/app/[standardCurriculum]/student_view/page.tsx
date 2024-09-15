@@ -1,3 +1,4 @@
+'use client'
 import {StudentHeader} from "@/components/dashboardHeader/StudentHeader";
 import {StudentFooter} from "@/components/dashboardFooter/StudentFooter";
 import {CustomGraph} from "@/components/studyProgramGraph/CustomGraph";
@@ -13,7 +14,7 @@ export default function StudentViewPage() {
     const isLoading = true;
 
     return (
-            <Box height={1}>
+            <Box height={1} >
                 <Stack height={1}>
                     <StudentHeader/>
                     <Box
@@ -29,7 +30,7 @@ export default function StudentViewPage() {
 
                     </Box>
 
-                    <StudentFooter/>
+                    <StudentFooter onClick={createPDF}/>
                 </Stack>
 
             </Box>

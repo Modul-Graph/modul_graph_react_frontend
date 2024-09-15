@@ -27,7 +27,6 @@ export const convertNodes = (_nodes: CustomNode[]) => {
         // assign node a rowID property based on position in columnNodes[]
         columnNodes.forEach((node, rowIndex) => {
             node.rowID = rowIndex + 3;
-            console.log(node)
 
         });
     });
@@ -37,11 +36,6 @@ export const convertNodes = (_nodes: CustomNode[]) => {
     semesters.forEach((sem) => {
         nodes.push({id: `sem-${sem}`, label: sem.toString(), sem: sem, rowID: 1});
     })
-
-
-    //nodes.push({id: 'sem-05', label: '5', sem: 5, rowID: 1});
-    //nodes.push({id: 'sem-06', label: '6', sem: 6, rowID: 1});
-    //nodes.push({id: 'sem-07', label: '7', sem: 7, rowID: 1})
     return nodes; // return modified nodes array
 };
 
