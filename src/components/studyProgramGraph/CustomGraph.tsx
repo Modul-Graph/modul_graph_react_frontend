@@ -18,13 +18,13 @@ export const CustomGraph = ({nodes, edges, onClick}: CustomGraphProps) => {
 
     // todo: backend anfrage
 
-    nodes = convertNodes(nodes);
-
+    const _nodes = convertNodes(nodes);
+    const max_semester = Math.max(..._nodes.map(n => n.sem));
 
     return (
 
             <GraphCanvas
-                    nodes={nodes}
+                    nodes={_nodes}
                     edges={edges}
                     theme={myTheme}
                     onNodeClick={(nodes) => onClick(nodes as unknown as CustomNode)}
@@ -36,8 +36,9 @@ export const CustomGraph = ({nodes, edges, onClick}: CustomGraphProps) => {
                             const node = nodes.find(n => n.id === id);
                             // if node undefined
                             if (!node || !node.rowID) return {x: 0, y: 0, z: 1};
+                            const columns = max_semester // todo: set to 7 semesters
 
-                            const columns = 4; // todo: set to 7 semesters
+
                             const columnWidth = 100; // Width of each column
                             const columnMargin = 20; // Margin between columns
                             const columnStartX = 100; // Starting X position for the first column

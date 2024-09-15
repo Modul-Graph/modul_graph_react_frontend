@@ -7,6 +7,7 @@ import {DoabilityResponse} from "@/lib/zod/doabilityResponseSchema";
 import {Step, Step1, Step2, Step3} from "@/app/sc/[standardCurriculum]/doability/Steps";
 import {Box, Button, MobileStepper, Stack} from "@mui/material";
 import StepperNextButton from "@/app/sc/[standardCurriculum]/doability/StepperNextButton";
+// @ts-ignore
 import JSConfetti from "js-confetti";
 
 const DoabilityStepper = (props: DoabilityStepperProps) => {
@@ -33,7 +34,7 @@ const _DoabilityStepper = ({standardCurriculum}: DoabilityStepperProps) => {
     }, [slideNo, standardCurriculum])
 
     return <Stack justifyContent={"stretch"} alignContent={"stretch"} height={1}>
-        <Box flexGrow={1} position={"relative"}>
+        <Box flexGrow={1} position={"relative"} p={30}>
             <AnimatePresence initial={false}>{[
                 <Step key={0}><Step1 standardCurriculumName={standardCurriculum}/></Step>,
                 <Step key={1}><Step2 standardCurriculumName={standardCurriculum}/></Step>,
@@ -43,7 +44,7 @@ const _DoabilityStepper = ({standardCurriculum}: DoabilityStepperProps) => {
                         jsConfetti.addConfetti().then(() => jsConfetti.destroyCanvas())
                     }
                 }} key={2}><Step3 standardCurriculumName={standardCurriculum} status={data.status}
-                             message={data.message}/></Step>
+                                  message={data.message}/></Step>
             ][slideNo]}</AnimatePresence>
         </Box>
         <MobileStepper

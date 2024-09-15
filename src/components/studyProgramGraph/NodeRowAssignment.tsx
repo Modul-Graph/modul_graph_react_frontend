@@ -9,7 +9,7 @@ import cloneDeep from "lodash/cloneDeep";
 export const convertNodes = (_nodes: CustomNode[]) => {
 
     // deep copy nodes - crazy stuff happens otherwise
-    const nodes = cloneDeep(_nodes);
+    const nodes: CustomNode[] = cloneDeep(_nodes);
 
     const columns: { [key: string]: CustomNode[] } = {};
 
@@ -32,11 +32,12 @@ export const convertNodes = (_nodes: CustomNode[]) => {
         });
     });
 
-    //create dummy nodes for semesters
-    nodes.push({id: 'sem-01', label: '1', sem: 1, rowID: 1});
-    nodes.push({id: 'sem-02', label: '2', sem: 2, rowID: 1});
-    nodes.push({id: 'sem-03', label: '3', sem: 3, rowID: 1});
-    nodes.push({id: 'sem-04', label: '4', sem: 4, rowID: 1})
+
+    const semesters = new Set(nodes.map(node => node.sem));
+    semesters.forEach((sem) => {
+        nodes.push({id: `sem-${sem}`, label: sem.toString(), sem: sem, rowID: 1});
+    })
+
 
     //nodes.push({id: 'sem-05', label: '5', sem: 5, rowID: 1});
     //nodes.push({id: 'sem-06', label: '6', sem: 6, rowID: 1});
