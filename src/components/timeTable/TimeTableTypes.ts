@@ -1,4 +1,4 @@
-import { TeacherScTableData } from "@/lib/zod/teacherScTableSchema";
+import { TeacherScTableData } from "@/lib/zod/teacherScTableSchemas";
 
 import { MouseEvent } from "react";
 

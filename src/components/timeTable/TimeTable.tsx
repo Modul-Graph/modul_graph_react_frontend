@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { createKey } from "next/dist/shared/lib/router/router";
-import { TeacherScTableData } from "@/lib/zod/teacherScTableSchema";
+import { TeacherScTableData } from "@/lib/zod/teacherScTableSchemas";
 import TimeTableCPCluster from "@/components/timeTable/TimeTableCPCluster";
 import { TimeTableCellOnClick, TimeTableCpClusterOnClick, TimeTableData } from "@/components/timeTable/TimeTableTypes";
 

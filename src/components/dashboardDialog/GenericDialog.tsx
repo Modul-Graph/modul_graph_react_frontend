@@ -1,63 +1,59 @@
-'use client'
-import * as React from 'react';
-import {Box, Button, IconButton} from '@mui/material';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
+import * as React from "react";
+import {ComponentProps} from "react";
+import {Box, IconButton, Paper, SxProps} from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 import {CloseIcon} from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
+import {OpenControlProps} from "@/components/dashboardDialog/DialogTypes";
 
-export default function GenericDialog({title, children, buttons}:GenericDialogProps) {
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+export default function GenericDialog({title, children, buttons, open, setOpen, sx}: GenericDialogProps) {
 
     const handleClose = () => {
         setOpen(false);
     };
 
-
     return (
             <React.Fragment>
-                <Button variant="contained"  onClick={handleClickOpen}>
-                    {title}
-                </Button>
                 <Dialog
                         open={open}
                         onClose={handleClose}
-                        PaperProps={{
-                            component: 'form',
-                            onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-                                event.preventDefault();
-                                handleClose();
-                            },
-                        }}
+                        PaperProps={
+                            {
+                                component: "div",
+                                sx: {
+                                    maxWidth: "80vw",
+                                    ...sx,
+                                },
+                            } as ComponentProps<typeof Paper>
+                        }
                 >
                     <DialogTitle>
                         <Box display="flex" alignItems="center">
-                            <Box flexGrow={1} >{title}</Box>
+                            <Box flexGrow={1}>{title}</Box>
                             <Box>
                                 <IconButton onClick={handleClose}>
-                                    <CloseIcon />
+                                    <CloseIcon/>
                                 </IconButton>
                             </Box>
                         </Box>
                     </DialogTitle>
-                    {children && (
+                    {open ?
                             <>
-                                <DialogContent style={{ height: 'inherit', position: 'relative' }}>
-                                    {children}
-                                </DialogContent>
-                            </>
-                    )}
-                    <DialogActions>
-                        {buttons}
-                    </DialogActions>
+                                <DialogContent
+                                        style={{height: "inherit", position: "relative"}}>{children}</DialogContent>
+                            </> : null
+                    }
+                    <DialogActions>{buttons}</DialogActions>
                 </Dialog>
             </React.Fragment>
     );
 }
 
-type GenericDialogProps = {title:string, children:React.ReactNode, buttons:React.ReactNode}
+type GenericDialogProps = {
+    title: string;
+    children: React.ReactNode;
+    buttons: React.ReactNode;
+    sx?: SxProps;
+} & OpenControlProps;
