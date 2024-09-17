@@ -1,13 +1,17 @@
 "use client"
 
-import {generateMock} from "@anatine/zod-mock";
-import {competenceTimeTableSchema, CompetenceTimeTableType} from "@/lib/zod/competenceTimeTableSchema";
-import {TimeTable} from "@/components/timeTable/TimeTable";
+import {CompetenceTimeTableType, WPFEntry} from "@/lib/zod/competenceTimeTableSchema";
 import {useEffect, useState} from "react";
 import client from "@/lib/connectivity/client";
+import {CompetenceTable} from "@/components/competencesTable/CompetenceTable";
+import {Box} from "@mui/material";
+import GenericDialog from "@/components/dashboardDialog/GenericDialog";
+import {CompetencyGraph} from "@/components/competencyGraph/CompetencyGraph";
 
 export default function CompetenceTimeTable({sc}: { sc: string }) {
     const [data, setData] = useState<CompetenceTimeTableType | null>(null)
+    const [showDialog, setShowDialog] = useState(false)
+    const [shownWPF, setShownWPF] = useState<WPFEntry | null>(null)
 
     useEffect(() => {
         client.getCompetenceTimeTable({params: {standardCurriculum: sc}}).then(r => {
@@ -20,7 +24,8 @@ export default function CompetenceTimeTable({sc}: { sc: string }) {
         return "Loading..."
     }
     const [table_data, column_key, row_key] = prepareCompetenceTimeTableData(data)
-    return <TimeTable<TCompetenceTimeTableCell, number, string> data={table_data} column_key={column_key}
+    return <>
+        <CompetenceTable<TCompetenceTimeTableCell, number, string> data={table_data} column_key={column_key}
                                                                 row_key={row_key} orderColumnKeys={(a, b) => a - b}
                                                                 orderRowKeys={(a, b) => {
                                                                     if (a == "WPF") {
@@ -31,8 +36,25 @@ export default function CompetenceTimeTable({sc}: { sc: string }) {
                                                                         return a.localeCompare(b)
                                                                     }
                                                                 }}
-                                                                cellRenderer={(T) => T.name}
+                                                                   cellRenderer={(T) => <Box
+                                                                           sx={{cursor: "pointer"}}
+                                                                           onClick={() => {
+                                                                               if (Object.hasOwn(T, "modules")) {
+                                                                                   setShownWPF({
+                                                                                       ...(T as TCompetenceTimeTableWPFCell),
+                                                                                       semesters: []
+                                                                                   })
+                                                                                   setShowDialog(true)
+                                                                               }
+                                                                           }}>{T.name}</Box>}
                                                                 columnHeader={"Semester"} rowHeader={"Kompetenz"}/>
+        <GenericDialog sx={{
+            minHeight: "80vh",
+            minWidth: "60vw"
+        }} title={"Kompetenzgraph"} buttons={<></>} open={showDialog} setOpen={setShowDialog}>
+            {shownWPF ? <CompetencyGraph wpfEntry={shownWPF}/> : null}
+        </GenericDialog>
+    </>
 }
 
 function prepareCompetenceTimeTableData(data: CompetenceTimeTableType): [TCompetenceTimeTableCell[], keyof TCompetenceTimeTableCell, keyof TCompetenceTimeTableCell] {

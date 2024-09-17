@@ -9,10 +9,10 @@ import StartIcon from '@mui/icons-material/Start';
 import ListItemText from "@mui/material/ListItemText";
 import {Divider, List, ListItem, ListItemButton, ListItemIcon} from "@mui/material";
 import Drawer from '@mui/material/Drawer';
-import { styled } from '@mui/material/styles';
+import {styled} from '@mui/material/styles';
 import React from "react";
 import Link from 'next/link'
-import {useParams} from 'next/navigation'
+import {useParams, usePathname} from 'next/navigation'
 
 /**
  *  hamburger menu component opens drawer for page navigation
@@ -20,6 +20,7 @@ import {useParams} from 'next/navigation'
 
 export default function HamburgerDrawer() {
     const params = useParams<{ standardCurriculum: string }>();
+    const pathname = usePathname();
 
     const drawerWidth = 240;
 
@@ -74,7 +75,7 @@ export default function HamburgerDrawer() {
                     <List>
 
                         <ListItem disablePadding>
-                            <Link href={`/${params.standardCurriculum}/teacher_view/module_graph`}>
+                            <Link href={`/sc/${params.standardCurriculum}/teacher_view/module_graph`}>
                                 <ListItemButton>
                                     <ListItemIcon>
                                         <GrainIcon/>
@@ -85,7 +86,7 @@ export default function HamburgerDrawer() {
                         </ListItem>
 
                         <ListItem disablePadding>
-                            <Link href={`/${params.standardCurriculum}/teacher_view/feasibility_analysis`}>
+                            <Link href={`/sc/${params.standardCurriculum}/teacher_view/feasibility_analysis?referrer_path=${encodeURI(pathname)}`}>
                                 <ListItemButton>
                                     <ListItemIcon>
                                         <TrendingUpIcon/>
@@ -96,7 +97,7 @@ export default function HamburgerDrawer() {
                         </ListItem>
 
                         <ListItem disablePadding>
-                            <Link href={`/${params.standardCurriculum}/teacher_view/competence_sc`}>
+                            <Link href={`/sc/${params.standardCurriculum}/teacher_view/competence_sc`}>
                                 <ListItemButton>
                                     <ListItemIcon>
                                         <TableChartIcon/>
@@ -107,7 +108,7 @@ export default function HamburgerDrawer() {
                         </ListItem>
 
                         <ListItem disablePadding>
-                            <Link href={`/${params.standardCurriculum}/teacher_view`}>
+                            <Link href={`/sc/${params.standardCurriculum}/teacher_view`}>
                                 <ListItemButton>
                                     <ListItemIcon>
                                         <StartIcon/>

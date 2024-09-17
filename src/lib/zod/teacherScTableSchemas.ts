@@ -2,6 +2,7 @@ import {z} from "zod";
 import {createUniqueFieldSchema} from "@ts-react/form";
 
 export const cellSchema = z.object({
+    isWPF: z.boolean(),
     name: z.string().min(1, "Name must not be empty"),
     cp: z.number().min(1, "CP must be at least 1"),
     sem: z

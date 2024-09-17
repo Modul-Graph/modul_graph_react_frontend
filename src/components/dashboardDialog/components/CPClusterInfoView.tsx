@@ -10,7 +10,7 @@ export default function CPClusterInfoView({data}: { data: CpCluster }) {
 
             {
                 data.cells.map(cell => <ListItem><ListItemText primary={cell.name}
-                                                               secondary={`${cell.cp} CP`}/></ListItem>)
+                                                               secondary={`${cell.sem}. Semester - ${cell.cp} CP`}/></ListItem>)
             }
         </List>
     </Stack>

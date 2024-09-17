@@ -32,6 +32,18 @@ export default function CellInfoDialog({
             {enabled: open && cellId !== undefined},
     );
 
+    const {
+        data: sem_data,
+        isLoading: sem_isLoading,
+        error: sem_error
+    } = apiHooks.useGetModuleWinterSummerInfo({params: {moduleName: data?.name ?? ""}}, {
+        refetchInterval: false,
+        refetchIntervalInBackground: false,
+        refetchOnWindowFocus: false,
+        enabled: !isLoading && !error
+    });
+
+
     const [editableView, setEditableView] = useState(false);
 
     useEffect(() => {
@@ -39,8 +51,8 @@ export default function CellInfoDialog({
             setEditableView(false);
         }
     }, [open]);
-    if (error) return "error";
-    if (isLoading) return "loading";
+    if (error || sem_error) return "error";
+    if (isLoading || sem_isLoading) return "loading";
 
 
     return (
@@ -77,7 +89,7 @@ export default function CellInfoDialog({
                                 <WPFInfoView data={data.data}/>
                         )
                 ) : editableView ? (
-                        <ModuleForm sc_name={sc_name} module={data.data} onSaved={() => {
+                        <ModuleForm req_semesters={sem_data} sc_name={sc_name} module={data.data} onSaved={() => {
                             setEditableView(false);
                             refetch();
                             onChangeSubmitted?.();

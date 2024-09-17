@@ -22,6 +22,9 @@ export const MultilineTextSchema = createUniqueFieldSchema(
     "multiline-text-schema",
 );
 
+
+export const DisplayOnlyTextSchema = createUniqueFieldSchema(z.string(), "display-only-text-schema");
+
 export const ProvidedCompetencesSchema = createUniqueFieldSchema(z.array(z.string().min(1, "Competence name must not be empty")), "provided-competences-schema");
 export const NeededCompetencesSchema = createUniqueFieldSchema(z.array(z.string().min(1, "Competence name must not be empty")), "needed-competences-schema");
 
@@ -33,3 +36,4 @@ export type ModuleAreaListType = z.infer<typeof ModuleAreaListSchema>;
 export type MultilineTextType = z.infer<typeof MultilineTextSchema>;
 export type ProvidedCompetencesType = z.infer<typeof ProvidedCompetencesSchema>;
 export type NeededCompetencesType = z.infer<typeof NeededCompetencesSchema>;
+export type DisplayOnlyTextType = z.infer<typeof DisplayOnlyTextSchema>;

@@ -16,6 +16,7 @@ export default function AddCellCandidate({cells, onAdd}: {
         refetchOnWindowFocus: false
     })
 
+
     const semesters = data ?? []
 
     const [currentCell, setCurrentCell] = useState<CellResponse | null>(null);
@@ -30,8 +31,6 @@ export default function AddCellCandidate({cells, onAdd}: {
                                     getOptionLabel={(option) => option.name}
                                     value={currentCell}
                                     onChange={(event, value) => {
-                                        console.log(event)
-                                        console.log(value)
                                         setCurrentCell(value)
                                     }}
                                     renderOption={({key, ...props}, option: CellResponse) => {
@@ -49,6 +48,8 @@ export default function AddCellCandidate({cells, onAdd}: {
                 onClick={() => {
                     if (currentCell !== null && currentSemester !== null) {
                         onAdd([currentCell, currentSemester])
+                        setCurrentCell(null)
+                        setCurrentSemester(null)
                     }
                 }}
                 variant={"contained"}

@@ -3,7 +3,7 @@ import GenericDialog from "@/components/dashboardDialog/GenericDialog";
 import {Button} from "@mui/material";
 import {apiHooks} from "@/lib/connectivity/client";
 import CPClusterInfoView from "@/components/dashboardDialog/components/CPClusterInfoView";
-import CellFormList from "@/components/form/cpCluster/CellFormList";
+import EditCPClusterForm from "@/components/form/cpCluster/EditCPClusterForm";
 
 export default function ({cpClusterID, open, setOpen}: {
     cpClusterID: string,
@@ -38,6 +38,9 @@ export default function ({cpClusterID, open, setOpen}: {
                 </Button>
             } open={open} setOpen={setOpen}
     >
-        {editing ? <CellFormList/> : <CPClusterInfoView data={data}/>}
+        {editing ? <EditCPClusterForm onSuccess={() => {
+            refetch()
+            setEditing(false)
+        }} data={data}/> : <CPClusterInfoView data={data}/>}
     </GenericDialog>
 }

@@ -9,13 +9,15 @@ import {ZodiosHooks} from "@zodios/react";
 import {CellResponseSchema} from "@/lib/zod/cellResponseSchema";
 import {ModuleAreaUpdateSchema} from "@/lib/zod/moduleAreaUpdateSchema";
 import {PflichtModuleUpdateSchema} from "@/lib/zod/ModuleSchemas";
+import {ModuleResponseSchema} from "@/lib/zod/moduleResponseSchema";
+import {updateClusterSchema} from "@/lib/zod/cpClusterSchemas";
 
 const API_URL = getClientEnvironment().NEXT_PUBLIC_API_URL;
 
 const apiClient = new Zodios(API_URL, [
     {
         method: "get",
-        path: "/doability/:standardCurriculum",
+        path: "/analysis/doability/:standardCurriculum",
         requestFormat: "json",
         response: doabilityResponseSchema,
         alias: "getDoability",
@@ -166,6 +168,29 @@ const apiClient = new Zodios(API_URL, [
         method: "get",
         path: "/sc/get_semesters",
         response: z.array(z.number().int().min(1, "Semester must be at least 1").max(15, "Semester must be at most 15")),
+    }, {
+        alias: "getModule",
+        method: "get",
+        path: "/module/:moduleName",
+        response: ModuleResponseSchema
+    }, {
+        alias: "getModuleWinterSummerInfo",
+        method: "get",
+        path: "/module/:moduleName/winter_summer_info",
+        response: z.tuple([z.boolean(), z.boolean()])
+    }, {
+        alias: "updateCpCluster",
+        method: "put",
+        path: "/cp_cluster/",
+        requestFormat: "json",
+        parameters: [
+            {
+                name: "cp_cluster",
+                type: "Body",
+                schema: updateClusterSchema
+            }
+        ],
+        response: z.any()
     }
 ]);
 

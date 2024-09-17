@@ -43,24 +43,35 @@ export default function ({
                                  needs_competences
                              },
                              onSaved,
+                             req_semesters
                          }: {
     sc_name: string;
     module: ModuleResponseType;
     onSaved?: () => void;
+    req_semesters: [boolean, boolean];
 }) {
+
+    // // Need to type the useForm call accordingly
+    // const form = useForm<z.infer<typeof FormSchema>>({
+    //     resolver: zodResolver(FormSchema)
+    // });
+
+
     return (
             <Form
                     onSubmit={async (d) => {
                         console.log(d);
                         const prevName = oldName;
                         const {name, cp, description, summer, winter, needs_competences, provides_competences} = d;
+
+                        console.log(req_semesters)
                         await apiClient.updateModule(
                                 {
                                     name,
                                     cp,
                                     description,
-                                    summer,
-                                    winter,
+                                    summer: summer || req_semesters[1],
+                                    winter: winter || req_semesters[0],
                                     needs_competences,
                                     provides_competences
                                 },

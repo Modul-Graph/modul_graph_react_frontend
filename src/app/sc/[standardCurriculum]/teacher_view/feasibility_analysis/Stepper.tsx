@@ -4,9 +4,9 @@ import { AnimatePresence } from "framer-motion";
 import { Reducer, useEffect, useReducer, useState } from "react";
 import apiClient from "@/lib/connectivity/client";
 import { DoabilityResponse } from "@/lib/zod/doabilityResponseSchema";
-import { Step, Step1, Step2, Step3 } from "@/app/sc/[standardCurriculum]/doability/Steps";
+import { Step, Step1, Step2, Step3 } from "@/app/sc/[standardCurriculum]/teacher_view/feasibility_analysis/Steps";
 import { Box, Button, MobileStepper, Stack } from "@mui/material";
-import StepperNextButton from "@/app/sc/[standardCurriculum]/doability/StepperNextButton";
+import StepperNextButton from "@/app/sc/[standardCurriculum]/teacher_view/feasibility_analysis/StepperNextButton";
 // @ts-ignore
 import JSConfetti from "js-confetti";
 

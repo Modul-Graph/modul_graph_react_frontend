@@ -46,10 +46,10 @@ export const Step = ({children, onAnimationComplete}: { children: ReactNode, onA
 }
 
 export const Step1 = ({standardCurriculumName}: StepsProps) => {
-    return <Paper>
+    return <Paper sx={{maxWidth: "60vw"}}>
         <Grid container sx={{height: 1}} padding={2}>
             <Grid item xs={12}>
-                <Typography variant={"h3"}>
+                <Typography variant={"h4"}>
                     {`Machbarkeitsanalyse für "${standardCurriculumName}"`}
                 </Typography>
             </Grid>
@@ -91,7 +91,7 @@ export const Step1 = ({standardCurriculumName}: StepsProps) => {
 }
 
 export const Step2 = ({standardCurriculumName}: StepsProps) => {
-    return <Box display={"flex"} flexDirection={"column"} gap={1} alignItems={"center"} justifyContent={"center"}
+    return <Box sx={{maxWidth: "60vw"}} display={"flex"} flexDirection={"column"} gap={1} alignItems={"center"} justifyContent={"center"}
                 width={1} height={1}>
         <CircularProgress/>
         <Typography>{`Analysiere ${standardCurriculumName}...`}</Typography>
@@ -99,7 +99,7 @@ export const Step2 = ({standardCurriculumName}: StepsProps) => {
 }
 
 export const Step3 = ({status, message}: Step3Props) => {
-    return <Box display={"flex"} alignItems={"center"} justifyContent={"center"} height={1}>
+    return <Box sx={{maxWidth: "60vw"}} display={"flex"} alignItems={"center"} justifyContent={"center"} height={1}>
         <Alert severity={status}>
             <AlertTitle>
                 <Typography>{status[0].toUpperCase() + status.slice(1)}</Typography>
