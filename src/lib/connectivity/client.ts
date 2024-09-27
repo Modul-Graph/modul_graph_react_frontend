@@ -276,7 +276,7 @@ const apiClient = new Zodios(API_URL, [
     }, {
         alias: "deleteCPCluster",
         method: "delete",
-        response: z.NEVER,
+        response: z.any(),
         path: "/cp_cluster/:cpClusterId"
     }, {
         alias: "createCPCluster",

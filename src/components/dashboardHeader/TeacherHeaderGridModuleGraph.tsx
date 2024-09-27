@@ -18,12 +18,6 @@ export const TeacherHeaderGridModuleGraph = ({onChange, sc_name}: {
                             <Grid container item xs={12} sm={6} md={4} lg={"auto"}>
                                 <SelectCompetencies sc_name={sc_name} onChange={onChange}></SelectCompetencies>
                             </Grid>
-                            <Grid container item xs={12} sm={8} md={6} lg={"auto"}>
-                                <HeaderButtonGroup sc_name={sc_name}/>
-                            </Grid>
-                            <Grid container item xs={12} sm={6} md={3} lg={"auto"}>
-                                <ButtonSelectStudyProgram></ButtonSelectStudyProgram>
-                            </Grid>
 
                         </Grid>
     )

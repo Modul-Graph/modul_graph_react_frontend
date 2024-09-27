@@ -15,11 +15,6 @@ export const TeacherHeaderGrid = ({sc_name}: {sc_name: string}) => {
                             <Grid container item xs={12} sm={8} md={6} lg={"auto"}>
                                 <HeaderButtonGroup sc_name={sc_name}/>
                             </Grid>
-
-                            <Grid container item xs={12} sm={6} md={3} lg={"auto"}>
-                                <ButtonSelectStudyProgram></ButtonSelectStudyProgram>
-                            </Grid>
-
                         </Grid>
     )
 }

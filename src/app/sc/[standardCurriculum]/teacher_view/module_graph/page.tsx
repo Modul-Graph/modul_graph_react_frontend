@@ -33,8 +33,6 @@ export default function TeacherViewModuleGraphPage({params}: { params: RouteType
                     >
                         <CompetencyGraph sc_name={sc_name} competences={competences}/>
                     </Box>
-
-                    <TeacherFooter/>
                 </Stack>
 
             </Box>
