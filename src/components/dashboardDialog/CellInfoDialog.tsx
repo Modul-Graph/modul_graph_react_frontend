@@ -5,9 +5,9 @@ import {apiHooks} from "@/lib/connectivity/client";
 import GenericDialog from "@/components/dashboardDialog/GenericDialog";
 import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {Button} from "@mui/material";
-import ModuleAreaForm from "@/components/form/moduleArea/ModuleAreaForm";
+import ModuleAreaForm from "@/components/form/moduleArea/UpdateModuleAreaForm";
 import WPFInfoView from "@/components/dashboardDialog/components/WPFInfoView";
-import ModuleForm from "@/components/form/module/PflichtModuleForm";
+import ModuleForm from "@/components/form/module/UpdateModuleForm";
 import PflichtmoduleInfoView from "@/components/dashboardDialog/components/PflichtmoduleInfoView";
 
 export default function CellInfoDialog({
@@ -32,17 +32,6 @@ export default function CellInfoDialog({
             {enabled: open && cellId !== undefined},
     );
 
-    const {
-        data: sem_data,
-        isLoading: sem_isLoading,
-        error: sem_error
-    } = apiHooks.useGetModuleWinterSummerInfo({params: {moduleName: data?.name ?? ""}}, {
-        refetchInterval: false,
-        refetchIntervalInBackground: false,
-        refetchOnWindowFocus: false,
-        enabled: !isLoading && !error
-    });
-
 
     const [editableView, setEditableView] = useState(false);
 
@@ -51,8 +40,10 @@ export default function CellInfoDialog({
             setEditableView(false);
         }
     }, [open]);
-    if (error || sem_error) return "error";
-    if (isLoading || sem_isLoading) return "loading";
+
+
+    if (error) return <></>;
+    if (isLoading) return <></>;
 
 
     return (
@@ -89,7 +80,7 @@ export default function CellInfoDialog({
                                 <WPFInfoView data={data.data}/>
                         )
                 ) : editableView ? (
-                        <ModuleForm req_semesters={sem_data} sc_name={sc_name} module={data.data} onSaved={() => {
+                        <ModuleForm sc_name={sc_name} module={data.data} onSaved={() => {
                             setEditableView(false);
                             refetch();
                             onChangeSubmitted?.();

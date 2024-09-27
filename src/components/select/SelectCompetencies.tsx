@@ -1,46 +1,36 @@
 'use client'
 
 import {InputLabel, MenuItem, OutlinedInput} from "@mui/material";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import theme from "@/theme";
+import {apiHooks} from "@/lib/connectivity/client";
 
 
-export const SelectCompetencies = () => {
+export const SelectCompetencies = ({onChange, sc_name}: {
+    onChange: (v: string[]) => void,
+    sc_name: string
+}) => {
 
-    const competences = ['Algorithmen und Datenstrukturen',
-        'Analysis',
-        'Numerik',
-        'Betriebssysteme',
-        'Datenbanken und Informationssysteme',
-        'Digitaltechnik und Rechnerorganisation',
-        'Diskrete Strukturen',
-        'Logik',
-        'Algebra',
-        'lineare Algebra',
-        'Formale Sprachen und Automaten',
-        'Informatik als Disziplin',
-        'Informatik und Gesellschaft',
-        'IT-Sicherheit',
-        'Mensch-Computer-Interaktion',
-        'Modellierung',
-        'Programmiersprachen und -methodik',
-        'Projekt- und Teamkompetenz',
-        'Rechnernetze und verteilte Systeme',
-        'Software-Engineering',
-        'Wahrscheinlichkeitstheorie',
-        'Statistik',
-        'Topologie',
-        'Differentialgeometrie',
-        'Robotik',
-        'Künstliche Intelligenz',
-        'Analytische Geometrie'];
+    const {
+        data,
+        isLoading,
+        error,
+        status
+    } = apiHooks.useGetAllCompetences({}, {refetchOnMount: false});
 
 
-    const [competenceName, setCompetenceName] = React.useState<string[]>([]);
+    const [competenceName, setCompetenceName] = useState<string[]>([]);
+
+    useEffect(() => {
+        onChange(competenceName);
+    }, [competenceName]);
+
+    if (isLoading || error) return <></>;
+
 
     const handleChange = (event: SelectChangeEvent<typeof competenceName>) => {
         const {
@@ -60,6 +50,7 @@ export const SelectCompetencies = () => {
                 <FormControl sx={{m: 1, width: 250}} size="small">
                     <InputLabel color={"secondary"} >Kompetenzen auswählen</InputLabel>
                     <Select
+                            variant={"outlined"}
                             multiple
                             value={competenceName}
                             onChange={handleChange}
@@ -67,11 +58,9 @@ export const SelectCompetencies = () => {
                             input={<OutlinedInput label="Kompetenz" sx={{
                                 background: theme.palette.background.paper,
                                 color: theme.palette.primary.dark
-                            }} inputProps={{
-
-                            }} />}
+                            }}/>}
                     >
-                        {competences.map((competence) => (
+                        {(data ?? []).map((competence) => (
                                 <MenuItem
                                         key={competence} value={competence}
                                 >

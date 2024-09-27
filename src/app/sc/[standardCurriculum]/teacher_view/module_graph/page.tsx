@@ -1,73 +1,43 @@
-"use client";
+"use client"
 
 import {TeacherHeaderModuleGraph} from "@/components/dashboardHeader/TeacherHeaderModuleGraph";
-import {Box, Stack} from "@mui/material";
-import TimeTable from "@/components/timeTable/TimeTable";
-import {apiHooks} from "@/lib/connectivity/client";
+import {TeacherFooter} from "@/components/dashboardFooter/TeacherFooter";
+import {Stack} from "@mui/material";
+import Box from "@mui/material/Box";
+// import {edges, nodes} from "@/components/studyProgramGraph/MockData";
 import {RouteType} from "@/app/sc/[standardCurriculum]/routeType";
-import React from "react";
-import CellInfoDialog from "@/components/dashboardDialog/CellInfoDialog";
-import CpClusterInfoDialog from "@/components/dashboardDialog/CpClusterInfoDialog";
+import {useEffect, useState} from "react";
+import {CompetencyGraph} from "@/components/CompetencyGraph";
 
 /**
  * renders teacher view with functionalities and module studyProgramGraph
  * */
 export default function TeacherViewModuleGraphPage({params}: { params: RouteType }) {
+
     const sc_name = decodeURI(params.standardCurriculum);
+    const [competences, setCompetences] = useState<string[]>([])
 
-    const {
-        data: res,
-        isLoading,
-        error,
-        refetch,
-    } = apiHooks.useGetTeacherScTable(
-            {
-                queries: {sc_name: sc_name},
-            },
-            {
-                refetchInterval: false,
-                refetchOnWindowFocus: false,
-            },
-    );
-
-    const [showCellDialog, setShowCellDialog] = React.useState(false);
-    const [showCPClusterDialog, setShowCPClusterDialog] = React.useState(false);
-    const [cellId, setCellId] = React.useState<string>();
-    const [cpClusterId, setCpClusterId] = React.useState<string>();
-
-    if (error) return "error";
-    if (isLoading) return "loading";
+    useEffect(() => {
+    }, []);
 
     return (
-            <>
+            <Box height={1}>
                 <Stack height={1}>
-                    <TeacherHeaderModuleGraph/>
-                    <Box py={1} px={3} flexGrow={1}>
-                        <TimeTable
-                                ttData={res}
-                                onCellClicked={(e, cell) => {
-                                    setCellId(cell.cellId);
-                                    setShowCellDialog(true);
-                                }}
-                                onCpClusterClicked={(e, cpCluster) => {
-                                    console.log(e)
-                                    setCpClusterId(cpCluster.cp_cluster_id);
-                                    setShowCPClusterDialog(true);
-                                }}
-                        />
+                    <TeacherHeaderModuleGraph sc_name={sc_name} onChange={(d) => setCompetences(d)}/>
+                    <Box
+                            flex={9999999999999999}
+                            sx={{position: "relative", overflow: "hidden"}}
+                            display={"block"}
+
+
+                    >
+                        <CompetencyGraph sc_name={sc_name} competences={competences}/>
                     </Box>
+
+                    <TeacherFooter/>
                 </Stack>
-                {showCellDialog ? <CellInfoDialog
-                        onChangeSubmitted={refetch}
-                        setOpen={setShowCellDialog}
-                        open={showCellDialog}
-                        cellId={cellId}
-                        sc_name={sc_name}
-                /> : null}
-                {showCPClusterDialog ?
-                        <CpClusterInfoDialog cpClusterID={cpClusterId!} open={showCPClusterDialog}
-                                             setOpen={setShowCPClusterDialog}/> : null
-                }
-            </>
-    );
+
+            </Box>
+    )
+
 }

@@ -1,6 +1,6 @@
-import { useTsController } from "@ts-react/form";
+import {useTsController} from "@ts-react/form";
 import TextField from "@mui/material/TextField";
-import { CPType } from "@/lib/zod/general";
+import {CPType} from "@/lib/zod/general";
 
 export default function CPTextField() {
     const {
@@ -18,9 +18,19 @@ export default function CPTextField() {
             helperText={error?.errorMessage}
             type={"number"}
             label={"CP"}
+            slotProps={{
+                input: {
+                    step: "0.1"
+                },
+                htmlInput: {
+                    step: "0.1"
+                }
+            }}
             disabled={disabled}
             value={value}
-            onChange={(e) => onChange(Number.parseInt(e.target.value))}
+            onChange={(e) => {
+                onChange(Number.parseFloat(e.target.value))
+            }}
         />
     );
 }

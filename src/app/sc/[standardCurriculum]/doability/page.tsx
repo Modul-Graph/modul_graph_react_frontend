@@ -3,7 +3,8 @@ import DoabilityStepper from "@/app/sc/[standardCurriculum]/teacher_view/feasibi
 
 const DoabilityPage = ({ params }: { params: RouteType }) => {
     const { standardCurriculum } = params;
-    return <DoabilityStepper standardCurriculum={standardCurriculum} />;
+
+    return <DoabilityStepper standardCurriculum={decodeURI(standardCurriculum)} />;
 };
 
 export default DoabilityPage;

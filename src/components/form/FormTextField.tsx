@@ -10,6 +10,8 @@ export default function FormTextField() {
 
     const value = _value ?? "";
 
+    console.log(error, value)
+
     return (
         <TextField
             fullWidth

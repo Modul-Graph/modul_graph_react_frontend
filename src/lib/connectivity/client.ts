@@ -8,9 +8,10 @@ import {cpClusterSchema, teacherScTableSchema} from "@/lib/zod/teacherScTableSch
 import {ZodiosHooks} from "@zodios/react";
 import {CellResponseSchema} from "@/lib/zod/cellResponseSchema";
 import {ModuleAreaUpdateSchema} from "@/lib/zod/moduleAreaUpdateSchema";
-import {PflichtModuleUpdateSchema} from "@/lib/zod/ModuleSchemas";
+import {CreateModuleSchema, ModuleSchemaBase} from "@/lib/zod/ModuleSchemas";
 import {ModuleResponseSchema} from "@/lib/zod/moduleResponseSchema";
-import {updateClusterSchema} from "@/lib/zod/cpClusterSchemas";
+import {createClusterSchema, updateClusterSchema} from "@/lib/zod/cpClusterSchemas";
+import {ModuleAreaResponseSchema} from "@/lib/zod/moduleAreaResponseSchema";
 
 const API_URL = getClientEnvironment().NEXT_PUBLIC_API_URL;
 
@@ -29,13 +30,13 @@ const apiClient = new Zodios(API_URL, [
         alias: "getCompetenceTimeTable",
     },
     {
-        method: "put",
+        method: "post",
         path: "/analysis/suggestion",
         response: scGraphResponseSchema.transform(transformSCSuggestionToGraph),
         requestFormat: "json",
         parameters: [
             {
-                name: "body",
+                name: "data",
                 type: "Body",
                 schema: z.object({
                     standard_curriculum: z.string(),
@@ -120,6 +121,12 @@ const apiClient = new Zodios(API_URL, [
         responseCode: 201,
     },
     {
+        alias: "deleteModuleArea",
+        method: "delete",
+        path: "/module_area/:moduleAreaName",
+        response: z.NEVER
+    },
+    {
         alias: "getWPFAreas",
         method: "get",
         path: "/sc/get_module_areas",
@@ -141,7 +148,7 @@ const apiClient = new Zodios(API_URL, [
             {
                 name: "module",
                 type: "Body",
-                schema: PflichtModuleUpdateSchema.transform((data) => ({
+                schema: ModuleSchemaBase.transform((data) => ({
                     ...data,
                     cp_plus_description: {DEFAULT: data.cp},
                 })),
@@ -191,9 +198,103 @@ const apiClient = new Zodios(API_URL, [
             }
         ],
         response: z.any()
+    }, {
+        alias: "getCompetencesSC",
+        method: "get",
+        path: "/sc/get_competence_sc",
+        parameters: [
+            {
+                name: "sc",
+                type: "Query",
+                schema: z.string()
+            }
+        ],
+        response: z.array(z.string().min(1, "Competence name must not be empty"))
+    }, {
+        alias: "createNewPflichtModule",
+        method: "post",
+        path: "/module/required",
+        parameters: [
+            {
+                name: "module",
+                type: "Body",
+                schema: CreateModuleSchema.transform((data) => ({
+                    ...data,
+                    cp_plus_description: {DEFAULT: data.cp},
+                }))
+            }
+        ],
+        response: z.NEVER
+    }, {
+        alias: "createNewWPFModule",
+        method: "post",
+        path: "/module/elective",
+        parameters: [
+            {
+                name: "module",
+                type: "Body",
+                schema: CreateModuleSchema.transform((data) => ({
+                    ...data,
+                    cp_plus_description: {DEFAULT: data.cp},
+                }))
+            }
+        ],
+        response: z.NEVER
+    }, {
+        alias: "deleteModule",
+        method: "delete",
+        path: "/module/:moduleName",
+        response: z.NEVER
+    }, {
+        alias: "createModuleArea",
+        method: "post",
+        parameters: [
+            {
+                name: "module_area",
+                type: "Body",
+                schema: ModuleAreaUpdateSchema
+            }
+        ],
+        path: "/module_area",
+        response: z.NEVER
+    }, {
+        alias: "getAllModuleAreas",
+        method: "get",
+        response: z.array(z.string().min(1, "Module area must not be empty")),
+        path: "/sc/module_areas"
+    }, {
+        alias: "getAllWPFModuleAreas",
+        method: "get",
+        response: z.array(z.string().min(1, "Module area must not be empty")),
+        path: "/sc/wpf_module_areas"
+    },
+    {
+        alias: "getModuleArea",
+        method: "get",
+        response: ModuleAreaResponseSchema,
+        path: "/module_area/:moduleAreaName"
+    }, {
+        alias: "deleteCPCluster",
+        method: "delete",
+        response: z.NEVER,
+        path: "/cp_cluster/:cpClusterId"
+    }, {
+        alias: "createCPCluster",
+        method: "post",
+        response: z.any(),
+        requestFormat: "json",
+        path: "/cp_cluster/",
+        parameters: [
+            {
+                name: "cp_cluster",
+                type: "Body",
+                schema: createClusterSchema
+            }
+        ]
     }
 ]);
 
 export const apiHooks = new ZodiosHooks("myAPI", apiClient);
 
 export default apiClient;
+

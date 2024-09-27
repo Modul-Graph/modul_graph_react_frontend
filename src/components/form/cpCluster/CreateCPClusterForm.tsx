@@ -4,9 +4,8 @@ import {CPSchema, DisplayOnlyTextSchema, FilledByModuleSchema} from "@/lib/zod/g
 import FilledByModuleEditFormComponent from "@/components/form/moduleArea/FilledByModuleEditFormComponent";
 import CPTextField from "@/components/form/CPTextField";
 import DisplayOnlyFormTextField from "@/components/form/DisplayOnlyFormTextField";
-import {updateClusterSchema, updateCpClusterCellSchema} from "@/lib/zod/cpClusterSchemas";
+import {createClusterSchema, updateCpClusterCellSchema} from "@/lib/zod/cpClusterSchemas";
 import CellFormList from "@/components/form/cpCluster/CellFormList";
-import {CpCluster} from "@/lib/zod/teacherScTableSchemas";
 import apiClient from "@/lib/connectivity/client";
 
 const formMapping = [
@@ -19,15 +18,9 @@ const formMapping = [
 const Form = createTsForm(formMapping, {FormComponent: FormContainer});
 
 
-export default function ({data, onSuccess}: { data: CpCluster, onSuccess?: () => void }) {
-    return <Form defaultValues={{
-        cp_note: data.cp_note,
-        clusterId: data.cp_cluster_id,
-        cells: data.cells
-    }} schema={updateClusterSchema} onSubmit={async (d) => {
-        console.log(d)
-        await apiClient.updateCpCluster(d, {})
+export default function ({onSuccess}: { onSuccess?: () => void }) {
+    return <Form schema={createClusterSchema} onSubmit={async (d) => {
+        await apiClient.createCPCluster(d, {})
         onSuccess?.()
-
     }}/>
 }

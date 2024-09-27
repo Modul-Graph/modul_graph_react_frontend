@@ -1,7 +1,7 @@
 import {Dispatch, SetStateAction, useState} from "react";
 import GenericDialog from "@/components/dashboardDialog/GenericDialog";
 import {Button} from "@mui/material";
-import {apiHooks} from "@/lib/connectivity/client";
+import apiClient, {apiHooks} from "@/lib/connectivity/client";
 import CPClusterInfoView from "@/components/dashboardDialog/components/CPClusterInfoView";
 import EditCPClusterForm from "@/components/form/cpCluster/EditCPClusterForm";
 
@@ -30,12 +30,15 @@ export default function ({cpClusterID, open, setOpen}: {
     return <GenericDialog
             title={"CP Cluster Info"}
             sx={{minWidth: "40vw"}}
-            buttons={
+            buttons={<>
                 <Button onClick={() => {
                     setEditing((prev) => !prev)
                 }}>
                     {editing ? "Abrechen" : "Bearbeiten"}
                 </Button>
+                <Button onClick={async () => {
+                    await apiClient.deleteCPCluster(undefined, {params: {cpClusterId: cpClusterID}})
+                }}>Löschen</Button></>
             } open={open} setOpen={setOpen}
     >
         {editing ? <EditCPClusterForm onSuccess={() => {

@@ -1,11 +1,11 @@
-'use client'
-import {GraphCanvas, GraphCanvasRef, LayoutOverrides} from "reagraph";
-import {CustomNodePositionArgs} from "@/components/studyProgramGraph/ICustomLayout";
-import React, {forwardRef, Ref} from "react";
-import {CustomEdge, CustomNode} from "@/components/studyProgramGraph/ICustomLayout";
+"use client"
+
+import {GraphCanvas, LayoutOverrides} from "reagraph";
+import {CustomEdge, CustomNode, CustomNodePositionArgs} from "@/components/studyProgramGraph/ICustomLayout";
+import React, {useEffect} from "react";
 import {convertNodes} from "@/components/studyProgramGraph/NodeRowAssignment";
 import {myTheme} from "@/components/studyProgramGraph/ITheme";
-import {useEventCallback, useInterval} from "usehooks-ts";
+import dynamic from "next/dynamic";
 
 type CustomLayoutInputs = LayoutOverrides & {
     getNodePosition: (id: string, args: CustomNodePositionArgs) => { x: number, y: number, z: number };
@@ -15,16 +15,19 @@ type CustomLayoutInputs = LayoutOverrides & {
  * implements a custom layout defined by semesters and renders module studyProgramGraph
  * */
 
-const _CustomGraph = ({nodes, edges, onClick}: CustomGraphProps, ref: Ref<GraphCanvasRef> ) => {
+export const CustomGraph = ({nodes, edges, onClick}: CustomGraphProps) => {
 
     // todo: backend anfrage bzw props von vorheriger anfrage von PageView
 
     nodes = convertNodes(nodes);
 
+    useEffect(() => {
+
+    }, []);
+
     return (
 
             <GraphCanvas
-                    ref={ref}
                     nodes={nodes}
                     edges={edges}
                     theme={myTheme}
@@ -65,9 +68,6 @@ const _CustomGraph = ({nodes, edges, onClick}: CustomGraphProps, ref: Ref<GraphC
             />
     );
 }
-
-// Ref for pdf export - forward Ref to pass Ref forward
-export const CustomGraph = forwardRef(_CustomGraph);
 
 type CustomGraphProps = {
     nodes: CustomNode[],

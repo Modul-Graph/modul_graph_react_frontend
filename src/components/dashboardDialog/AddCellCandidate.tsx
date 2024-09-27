@@ -26,7 +26,8 @@ export default function AddCellCandidate({cells, onAdd}: {
     if (error) return <></>
 
     return <Stack direction={"row"} gap={1}>
-        <Box flex={3}><Autocomplete renderInput={(params) => <TextField {...params} label="(WPF) Modul"/>}
+        <Box flex={3}>
+            <Autocomplete renderInput={(params) => <TextField {...params} label="(WPF) Modul"/>}
 
                                     getOptionLabel={(option) => option.name}
                                     value={currentCell}
@@ -38,7 +39,8 @@ export default function AddCellCandidate({cells, onAdd}: {
                                             <ListItemText primary={option.name}
                                                           secondary={`${option.contains_wpf ? option.data.cp : option.data.cp_plus_description.DEFAULT} CP`}/>
                                         </ListItem>
-                                    }} options={cells}/></Box>
+                                    }} options={cells}/>
+        </Box>
 
         <Box flex={1}><Autocomplete renderInput={(params) => <TextField {...params} label="Semester"/>}
                                     options={semesters}

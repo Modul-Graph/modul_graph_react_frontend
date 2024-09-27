@@ -45,7 +45,7 @@ export default function GenericDialog({title, children, buttons, open, setOpen, 
                                         style={{height: "inherit", position: "relative"}}>{children}</DialogContent>
                             </> : null
                     }
-                    <DialogActions>{buttons}</DialogActions>
+                    {buttons ? <DialogActions>{buttons}</DialogActions> : null}
                 </Dialog>
             </React.Fragment>
     );
@@ -54,6 +54,6 @@ export default function GenericDialog({title, children, buttons, open, setOpen, 
 type GenericDialogProps = {
     title: string;
     children: React.ReactNode;
-    buttons: React.ReactNode;
+    buttons?: React.ReactNode;
     sx?: SxProps;
 } & OpenControlProps;
