@@ -19,7 +19,7 @@ const formMapping = [
 
 const Form = createTsForm(formMapping, {FormComponent: FormContainer});
 
-export default function ({
+export default function UpdateModuleAreaForm({
                              sc_name,
                              moduleArea: {filled_by_module, cp, name: old_name},
                              onSaved,

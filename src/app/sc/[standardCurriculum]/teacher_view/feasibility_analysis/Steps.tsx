@@ -91,7 +91,8 @@ export const Step1 = ({standardCurriculumName}: StepsProps) => {
 }
 
 export const Step2 = ({standardCurriculumName}: StepsProps) => {
-    return <Box sx={{maxWidth: "60vw"}} display={"flex"} flexDirection={"column"} gap={1} alignItems={"center"} justifyContent={"center"}
+    return <Box sx={{maxWidth: "60vw"}} display={"flex"} flexDirection={"column"} gap={1} alignItems={"center"}
+                justifyContent={"center"}
                 width={1} height={1}>
         <CircularProgress/>
         <Typography>{`Analysiere ${standardCurriculumName}...`}</Typography>

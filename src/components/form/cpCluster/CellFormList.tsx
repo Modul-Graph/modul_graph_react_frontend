@@ -14,7 +14,7 @@ export default function CellFormList() {
         error,
     } = useTsController<UpdateCpClusterCells>();
 
-    const {data, error: queryError, isLoading, refetch} = apiHooks.useGetPotentialCellContent({}, {
+    const {data, error: queryError, isLoading} = apiHooks.useGetPotentialCellContent({}, {
         refetchInterval: false,
         refetchIntervalInBackground: false,
         refetchOnWindowFocus: false
@@ -44,16 +44,16 @@ export default function CellFormList() {
 
                             if (cell.isWPF) return
                             else {
-                                const module = await apiClient.getModule({
+                                const mod = await apiClient.getModule({
                                     params: {
                                         moduleName: cell.name
                                     }
                                 })
 
                                 setPotentialCells((prev) => [...prev, {
-                                    name: module.name,
+                                    name: mod.name,
                                     contains_wpf: false,
-                                    data: module
+                                    data: mod
                                 }])
                             }
                         }}><Delete/></IconButton>} key={index}>

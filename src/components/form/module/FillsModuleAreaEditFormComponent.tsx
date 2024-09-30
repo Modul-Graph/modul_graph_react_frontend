@@ -4,7 +4,7 @@ import {apiHooks} from "@/lib/connectivity/client";
 import TransferList from "@/components/TransferList";
 import {ModuleAreaListType} from "@/lib/zod/general";
 
-export default function ({sc_name}: { sc_name: string }) {
+export default function FillsModuleAreaEditFormComponent({sc_name}: { sc_name: string }) {
     const {
         field: {onChange, value: _value},
         error,

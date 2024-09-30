@@ -14,7 +14,7 @@ export default function UpdateWPFDialog({sc_name, wpf_name, open, setOpen, onSav
 
     const {data, isLoading, isError} = apiHooks.useGetModuleArea({params: {moduleAreaName: wpf_name}}, {})
 
-    const router = useRouter()
+    useRouter();
 
 
     if (isLoading || isError) return <></>

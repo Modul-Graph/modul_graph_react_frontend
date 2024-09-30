@@ -1,8 +1,6 @@
 import {z} from "zod";
 import {
     CPSchema,
-    HiddenArrayValueSchema,
-    HiddenStringValueSchema,
     ModuleAreaListSchema,
     MultilineTextSchema,
     NeededCompetencesSchema,
@@ -46,16 +44,16 @@ const ModuleUpdateSchemaBase = z.object({
     //     path: ["name"],
     // })
     .refine(
-    (data) => {
-        return data.summer || data.winter;
-    },
-    {
-        message: "Modul muss mindestens für ein Semester angeboten werden",
-        path: ["summer"],
-    },
+        (data) => {
+            return data.summer || data.winter;
+        },
+        {
+            message: "Modul muss mindestens für ein Semester angeboten werden",
+            path: ["summer"],
+        },
     )
 
-export const ModuleUpdateSchema = ModuleUpdateSchemaBase.and(z.object({
+ModuleUpdateSchemaBase.and(z.object({
     module_areas: ModuleAreaListSchema,
 }));
 
@@ -70,4 +68,3 @@ export const PflichtModuleUpdateSchema = ModuleUpdateSchemaBase
 //     },
 // );
 
-export type PflichtModuleUpdateType = z.infer<typeof PflichtModuleUpdateSchema>;

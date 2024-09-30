@@ -9,7 +9,7 @@ export function getList(items: string[], header: string) {
                 maxHeight: "60vh",
             }}
     >
-        {items.map((item, idx) => (
+        {items.map((item) => (
                 <>
                     <ListItem key={item}>
                         <ListItemText primary={item}></ListItemText>

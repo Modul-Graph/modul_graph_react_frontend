@@ -6,11 +6,13 @@ import _ from "lodash";
 import {DynamicCustomGraph} from "@/components/DynamicCustomGraph";
 import {Box, CircularProgress} from "@mui/material";
 
-export const CompetencyGraph = memo(({sc_name, competences}: { sc_name: string, competences: string[] }) => {
+export const CompetencyGraph = memo(function CompetencyGraph({sc_name, competences}: {
+    sc_name: string,
+    competences: string[]
+}) {
     const {
         data: _data,
-        isLoading,
-        isError
+        isLoading
     } = apiHooks.useImmutableQuery("/analysis/suggestion", {
         standard_curriculum: sc_name,
         competences

@@ -1,7 +1,6 @@
 "use client"
 
 import {TeacherHeaderModuleGraph} from "@/components/dashboardHeader/TeacherHeaderModuleGraph";
-import {TeacherFooter} from "@/components/dashboardFooter/TeacherFooter";
 import {Stack} from "@mui/material";
 import Box from "@mui/material/Box";
 // import {edges, nodes} from "@/components/studyProgramGraph/MockData";

@@ -34,8 +34,7 @@ export const teacherScTableSchema = z
         return maxSemester - minSemester + 1 === semesters.size;
     }, "Semesters must be consecutive");
 
-export const cpClusterCells = createUniqueFieldSchema(z.array(cellSchema), "cp-cluster-cells");
+createUniqueFieldSchema(z.array(cellSchema), "cp-cluster-cells");
 
 export type TeacherScTableData = z.infer<typeof teacherScTableSchema>;
 export type CpCluster = z.infer<typeof cpClusterSchema>;
-export type CpClusterCells = z.infer<typeof cpClusterCells>;

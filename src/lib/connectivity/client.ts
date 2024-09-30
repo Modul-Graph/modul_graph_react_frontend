@@ -291,6 +291,19 @@ const apiClient = new Zodios(API_URL, [
                 schema: createClusterSchema
             }
         ]
+    },
+    {
+        alias: "createCompetence",
+        method: "put",
+        response: z.any(),
+        requestFormat: "json",
+        path: "/sc/competence/:name",
+    },
+    {
+        alias: "deleteCompetence",
+        method: "delete",
+        response: z.any(),
+        path: "/sc/competence/:name"
     }
 ]);
 

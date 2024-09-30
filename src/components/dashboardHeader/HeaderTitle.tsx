@@ -1,8 +1,9 @@
 import {Typography} from "@mui/material";
+
 /**
  * takes a title prop and renders it inside a Typography component
  * **/
-export const HeaderTitle = ({title}:HeaderTitleProps) => {
+export const HeaderTitle = ({title}: HeaderTitleProps) => {
 
 
     return (
@@ -12,4 +13,4 @@ export const HeaderTitle = ({title}:HeaderTitleProps) => {
     )
 }
 
-type HeaderTitleProps = {title:String}
+type HeaderTitleProps = { title: String }

@@ -4,7 +4,7 @@ import {apiHooks} from "@/lib/connectivity/client";
 import {FilledByModuleType} from "@/lib/zod/general";
 import TransferList from "@/components/TransferList";
 
-export default function () {
+export default function ProvidedCompetencesFormSelector() {
     const {
         field: {onChange, value: _value},
         error,

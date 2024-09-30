@@ -18,7 +18,7 @@ const formMapping = [
 const Form = createTsForm(formMapping, {FormComponent: FormContainer});
 
 
-export default function ({onSuccess}: { onSuccess?: () => void }) {
+export default function CreateCPClusterForm({onSuccess}: { onSuccess?: () => void }) {
     return <Form schema={createClusterSchema} onSubmit={async (d) => {
         await apiClient.createCPCluster(d, {})
         onSuccess?.()

@@ -11,14 +11,14 @@ import {WPFEntry} from "@/lib/zod/competenceTimeTableSchema";
  * implements a custom layout defined by competency nodes connected to modules
  * */
 
-export const CompetencyGraph = ({wpfEntry}: {wpfEntry: WPFEntry}) => {
+export const CompetencyGraph = ({wpfEntry}: { wpfEntry: WPFEntry }) => {
 
     // todo: backend anfrage zod
 
-    const [nodes,edges] = makeNodesNEdges(wpfEntry);
+    const [nodes, edges] = makeNodesNEdges(wpfEntry);
 
     class CustomLayoutInputs {
-        
+
     }
 
     return (

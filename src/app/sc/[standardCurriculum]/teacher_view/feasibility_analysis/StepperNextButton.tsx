@@ -1,10 +1,9 @@
 "use client"
 
 import {Dispatch, useEffect, useState} from "react";
-import {redirect, usePathname, useRouter, useSearchParams} from "next/navigation";
+import {redirect, useSearchParams} from "next/navigation";
 import {Button, ButtonProps} from "@mui/material";
 import {LoadingButton} from "@mui/lab"
-
 
 
 const StepperNextButton = ({slideNo, next, maxSlides, allowNavigation, ...props}: StepperNextButtonProps) => {
@@ -28,7 +27,7 @@ const StepperNextButton = ({slideNo, next, maxSlides, allowNavigation, ...props}
 
 
     return slideNo < maxSlides ? <Button {...props} onClick={() => next("next")}
-                   disabled={allowNavigation}>{slideNo+1 >= maxSlides ? "Fertig" : "Weiter"}</Button>: redirect(referrer_path.pathname)
+                                         disabled={allowNavigation}>{slideNo + 1 >= maxSlides ? "Fertig" : "Weiter"}</Button> : redirect(referrer_path.pathname)
 
 
 }

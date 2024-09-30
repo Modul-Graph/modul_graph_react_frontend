@@ -47,7 +47,7 @@ function TimeTableView<T, CK extends KeyType, RK extends KeyType>(props: TimeTab
                 <TableRow>
                     <TableCell colSpan={2} sx={{border: 'none', zIndex: 20, top: 56}}/>
                     {props.column_keys.map((column_key, idx) => {
-                        return <TimeTableCell onClick={(column_key) => console.log()} sx={(theme) => ({
+                        return <TimeTableCell onClick={() => console.log()} sx={(theme) => ({
                             color: theme.palette.primary.contrastText,
                             background: theme.palette.primary.main,
                             top: 56
@@ -169,7 +169,7 @@ function genTableData<T, CK extends KeyType, RK extends KeyType>(
 
     const table_data: T[][][] = Array(row_keys.length)
             .fill(null)
-            .map(() => Array(column_keys.length).fill(null).map(e => []))
+            .map(() => Array(column_keys.length).fill(null).map(() => []))
 
     row_keys.forEach((row_key, row_index) => {
         column_keys.forEach((column_key, column_index) => {
@@ -187,7 +187,7 @@ function genTableData<T, CK extends KeyType, RK extends KeyType>(
 }
 
 
-export type TimeTableProps<T, CK extends KeyType, RK extends KeyType> = {
+type TimeTableProps<T, CK extends KeyType, RK extends KeyType> = {
 
     /**
      * List of time table cells containing data

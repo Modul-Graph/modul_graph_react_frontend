@@ -29,17 +29,17 @@ export default function AddCellCandidate({cells, onAdd}: {
         <Box flex={3}>
             <Autocomplete renderInput={(params) => <TextField {...params} label="(WPF) Modul"/>}
 
-                                    getOptionLabel={(option) => option.name}
-                                    value={currentCell}
-                                    onChange={(event, value) => {
-                                        setCurrentCell(value)
-                                    }}
-                                    renderOption={({key, ...props}, option: CellResponse) => {
-                                        return <ListItem key={key} {...props}>
-                                            <ListItemText primary={option.name}
-                                                          secondary={`${option.contains_wpf ? option.data.cp : option.data.cp_plus_description.DEFAULT} CP`}/>
-                                        </ListItem>
-                                    }} options={cells}/>
+                          getOptionLabel={(option) => option.name}
+                          value={currentCell}
+                          onChange={(event, value) => {
+                              setCurrentCell(value)
+                          }}
+                          renderOption={({key, ...props}, option: CellResponse) => {
+                              return <ListItem key={key} {...props}>
+                                  <ListItemText primary={option.name}
+                                                secondary={`${option.contains_wpf ? option.data.cp : option.data.cp_plus_description.DEFAULT} CP`}/>
+                              </ListItem>
+                          }} options={cells}/>
         </Box>
 
         <Box flex={1}><Autocomplete renderInput={(params) => <TextField {...params} label="Semester"/>}

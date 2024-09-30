@@ -9,11 +9,11 @@ import ModuleForm from "@/components/form/module/ModuleForm";
 import {useEffect} from "react";
 
 
-export default function ({
-                             module,
-                             onSaved,
-                             sc_name
-                         }: {
+export default function UpdateModuleForm({
+                                             module,
+                                             onSaved,
+                                             sc_name
+                                         }: {
     sc_name: string;
     module: ModuleResponseType;
     onSaved?: () => void;
@@ -27,7 +27,7 @@ export default function ({
         winter,
         provides_competences,
         needs_competences,
-            module_areas
+        module_areas
     } = module;
 
     const {
@@ -55,7 +55,7 @@ export default function ({
             needs_competences,
             isPflicht: module_areas.length === 1
         })
-    }, [module]);
+    }, [module, cp_plus_description.DEFAULT, description, summer, winter, provides_competences, needs_competences, module_areas, form, oldName]);
 
 
     if (sem_error || sem_isLoading) {

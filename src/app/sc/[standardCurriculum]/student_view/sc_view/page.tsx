@@ -2,11 +2,9 @@
 
 import {RouteType} from "@/app/sc/[standardCurriculum]/routeType";
 import {Box, Stack} from "@mui/material";
-import {TeacherHeader} from "@/components/dashboardHeader/TeacherHeader";
 import TimeTable from "@/components/timeTable/TimeTable";
 import React from "react";
 import {apiHooks} from "@/lib/connectivity/client";
-import {StudentHeader} from "@/components/dashboardHeader/StudentHeader";
 import {StudentViewSCHeader} from "@/components/dashboardHeader/StudentViewSCHeader";
 
 /**
@@ -21,7 +19,7 @@ export default function TableViewPage({params}: { params: RouteType }) {
         data: res,
         isLoading,
         error,
-        refetch,
+
     } = apiHooks.useGetTeacherScTable(
             {
                 queries: {sc_name: sc_name},
@@ -39,7 +37,7 @@ export default function TableViewPage({params}: { params: RouteType }) {
     return (
             <>
                 <Stack height={1}>
-                    <StudentViewSCHeader sc_name={sc_name} />
+                    <StudentViewSCHeader sc_name={sc_name}/>
                     <Box py={1} px={3} flexGrow={1} position={"relative"}>
                         <TimeTable
                                 ttData={res}

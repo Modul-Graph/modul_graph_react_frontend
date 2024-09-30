@@ -5,7 +5,7 @@ import apiClient, {apiHooks} from "@/lib/connectivity/client";
 import CPClusterInfoView from "@/components/dashboardDialog/components/CPClusterInfoView";
 import EditCPClusterForm from "@/components/form/cpCluster/EditCPClusterForm";
 
-export default function ({cpClusterID, open, setOpen}: {
+export default function CpClusterInfoDialog({cpClusterID, open, setOpen}: {
     cpClusterID: string,
     open: boolean,
     setOpen: Dispatch<SetStateAction<boolean>>
