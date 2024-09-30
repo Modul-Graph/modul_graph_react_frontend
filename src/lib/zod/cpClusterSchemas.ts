@@ -26,5 +26,3 @@ export const createClusterSchema = z.object({
     cells: updateCpClusterCellSchema.describe("Module im CP Cluster"),
 })
 
-export type CreateCluster = z.infer<typeof updateClusterSchema>;
-

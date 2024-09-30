@@ -19,10 +19,9 @@ const zodServerOnlyEnvironmentSchema = z.object({
 })
 
 
-const zodServerEnvironmentSchema = zodClientEnvironmentSchema.and(zodServerOnlyEnvironmentSchema)
+zodClientEnvironmentSchema.and(zodServerOnlyEnvironmentSchema);
 
-export type ClientEnvironment = z.infer<typeof zodClientEnvironmentSchema>
-export type ServerEnvironment = z.infer<typeof zodServerEnvironmentSchema>
+type ClientEnvironment = z.infer<typeof zodClientEnvironmentSchema>
 export const getClientEnvironment = (): ClientEnvironment => {
     // Don't allow server to run this
     if (typeof window === undefined) {
@@ -35,11 +34,3 @@ export const getClientEnvironment = (): ClientEnvironment => {
     return zodClientEnvironmentSchema.parse(clientEnvironment)
 }
 
-export const getServerEnvironment = (): ServerEnvironment => {
-    // Don't allow client to run this
-    if (typeof window !== undefined) {
-        throw new Error("Module can only be used on the server side!")
-    }
-
-    return zodServerEnvironmentSchema.parse(process.env)
-}

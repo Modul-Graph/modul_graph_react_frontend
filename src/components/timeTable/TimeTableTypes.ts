@@ -1,6 +1,6 @@
-import { TeacherScTableData } from "@/lib/zod/teacherScTableSchemas";
+import {TeacherScTableData} from "@/lib/zod/teacherScTableSchemas";
 
-import { MouseEvent } from "react";
+import {MouseEvent} from "react";
 
 export type TimeTableData = ({
     startSemester: number;

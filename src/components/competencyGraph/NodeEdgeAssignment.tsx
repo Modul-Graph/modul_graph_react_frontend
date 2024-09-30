@@ -1,6 +1,6 @@
 import {ColoredEdge, ColoredNode} from "@/components/competencyGraph/ICompetencyGraph";
-import {red,pink,purple,blue,green,yellow,orange, grey} from "@mui/material/colors"
-import { WPFEntry} from "@/lib/zod/competenceTimeTableSchema";
+import {blue, green, grey, orange, pink, purple, red, yellow} from "@mui/material/colors"
+import {WPFEntry} from "@/lib/zod/competenceTimeTableSchema";
 
 /**
  * create from backend data Competency Nodes, Module Nodes and Edges; color nodes
@@ -22,40 +22,40 @@ export const makeNodesNEdges = (data: WPFEntry): [ColoredNode[], ColoredEdge[]] 
     for (const moduleEntry of data.modules) {
         modulesSet.add(moduleEntry.name); //add module names
         for (const competence of moduleEntry.competences) {
-                competencesSet.add(competence); // add competency names
-                // add competencies with corresponding module
-                competencesWithModules.push([competence, moduleEntry.name]);
-            }
+            competencesSet.add(competence); // add competency names
+            // add competencies with corresponding module
+            competencesWithModules.push([competence, moduleEntry.name]);
+        }
     }
 
     // create nodes
-    const nodes: ColoredNode[]=[];
+    const nodes: ColoredNode[] = [];
 
     //colors for nodes
-    const colors= [red[300], green[300], yellow[300], blue[300], pink[300], orange[300], purple[300]];
+    const colors = [red[300], green[300], yellow[300], blue[300], pink[300], orange[300], purple[300]];
 
     // create competency nodes
     // CompetencyNode - color: different, colID: 1
     Array.from(competencesSet).forEach((value, index) => {
-        const color=colors[index%7]; // pick color
-        nodes.push({id: `${value}`, label: `${value}`, fill: color, colID: 1, rowID: index+1});
+        const color = colors[index % 7]; // pick color
+        nodes.push({id: `${value}`, label: `${value}`, fill: color, colID: 1, rowID: index + 1});
     });
 
     //create module nodes
     // ModuleNode - color: grey, colID: 2
     Array.from(modulesSet).forEach((value, index) => {
-        nodes.push({id: `${value}`, label: `${value}`, fill: grey[300], colID: 2, rowID: index+1});
+        nodes.push({id: `${value}`, label: `${value}`, fill: grey[300], colID: 2, rowID: index + 1});
     });
 
     //create edges
-    const edges: ColoredEdge[]=[];
+    const edges: ColoredEdge[] = [];
     // Edges - source: competence, target: module
 
     for (let i = 0; i < competencesWithModules.length; i++) {
-    const [competence, module] = competencesWithModules[i];
-    edges.push({ source:`${competence}`, target:`${module}`, id:`${competence}-${module}`});
-}
+        const [competence, module] = competencesWithModules[i];
+        edges.push({source: `${competence}`, target: `${module}`, id: `${competence}-${module}`});
+    }
 
-    return [nodes,edges];
+    return [nodes, edges];
 
 }

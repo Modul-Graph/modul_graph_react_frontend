@@ -19,13 +19,12 @@ const formMapping = [
 const Form = createTsForm(formMapping, {FormComponent: FormContainer});
 
 
-export default function ({data, onSuccess}: { data: CpCluster, onSuccess?: () => void }) {
+export default function EditCPClusterForm({data, onSuccess}: { data: CpCluster, onSuccess?: () => void }) {
     return <Form defaultValues={{
         cp_note: data.cp_note,
         clusterId: data.cp_cluster_id,
         cells: data.cells
     }} schema={updateClusterSchema} onSubmit={async (d) => {
-        console.log(d)
         await apiClient.updateCpCluster(d, {})
         onSuccess?.()
 

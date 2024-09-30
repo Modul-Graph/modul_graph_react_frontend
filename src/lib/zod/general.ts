@@ -33,11 +33,5 @@ export const HiddenArrayValueSchema = createUniqueFieldSchema(z.array(z.string()
 
 export type FilledByModuleType = z.infer<typeof FilledByModuleSchema>;
 export type CPType = z.infer<typeof CPSchema>;
-export type ModuleAreaNameType = z.infer<typeof ModuleAreaNameSchema>;
 export type ModuleAreaListType = z.infer<typeof ModuleAreaListSchema>;
-export type MultilineTextType = z.infer<typeof MultilineTextSchema>;
-export type ProvidedCompetencesType = z.infer<typeof ProvidedCompetencesSchema>;
-export type NeededCompetencesType = z.infer<typeof NeededCompetencesSchema>;
 export type DisplayOnlyTextType = z.infer<typeof DisplayOnlyTextSchema>;
-export type HiddenStringType = z.infer<typeof HiddenStringValueSchema>;
-export type HiddenArrayType = z.infer<typeof HiddenArrayValueSchema>;

@@ -1,11 +1,11 @@
 import {ModuleAreaResponse} from "@/lib/zod/moduleAreaResponseSchema";
-import {Divider, List, ListItem, ListItemText, ListSubheader, Stack, TextField} from "@mui/material";
+import {Stack} from "@mui/material";
 import React from "react";
 import {getList} from "@/components/dashboardDialog/util";
 import InertTextField from "@/components/dashboardDialog/InertTextField";
 
 
-export default ({data}: { data: ModuleAreaResponse }) => {
+export default function WPFInfoView({data}: { data: ModuleAreaResponse }) {
     return (
             <Stack spacing={1} paddingTop={2}>
                 <InertTextField
@@ -15,4 +15,5 @@ export default ({data}: { data: ModuleAreaResponse }) => {
                 {getList(data.filled_by_module, "Belegbare Module")}
             </Stack>
     );
-};
+}
+;

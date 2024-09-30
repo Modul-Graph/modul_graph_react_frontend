@@ -5,7 +5,7 @@ import {StudentViewSCHeaderGrid} from "@/components/dashboardHeader/StudentViewS
  * renders header for the student view
  * **/
 export const StudentViewSCHeader = ({sc_name}: { sc_name: string }) => {
-    return (<GenericHeader title="individueller Studienplan"
+    return (<GenericHeader title={`Regelstudienplan`}
                            child={<StudentViewSCHeaderGrid sc_name={sc_name}/>}
                            menu={<></>}/>)
 }

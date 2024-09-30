@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { CPSchema, FilledByModuleSchema, ModuleAreaNameSchema } from "@/lib/zod/general";
+import {z} from "zod";
+import {CPSchema, FilledByModuleSchema, ModuleAreaNameSchema} from "@/lib/zod/general";
 
 export const ModuleAreaUpdateSchema = z.object({
     name: ModuleAreaNameSchema.describe("WPF-Name // Gib einen WPF-Namen an. Dieser darf nicht bereits vergeben sein!"),

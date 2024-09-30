@@ -1,4 +1,4 @@
-import {Graph, InternalGraphNode} from "reagraph";
+import {Graph} from "reagraph";
 //import {DragReferences} from "reagraph/dist/store"; // idk doesnt exist anymore - error message?
 
 /**
@@ -25,11 +25,6 @@ export interface CustomEdge {
     source: string,
     target: string,
     id: string,
-}
-
-export interface LayoutFactoryProps {
-    //Get the node position for a given node id.
-    getNodePosition: (id: string, args: CustomNodePositionArgs) => InternalGraphNode;
 }
 
 export interface CustomNodePositionArgs {

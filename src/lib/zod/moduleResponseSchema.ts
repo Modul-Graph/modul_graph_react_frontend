@@ -1,11 +1,11 @@
-import { z } from "zod";
+import {z} from "zod";
 
 export const ModuleResponseSchema = z
     .object({
         name: z.string().min(1, "Name must not be empty"),
         description: z.string().nullish().optional(),
 
-        cp_plus_description: z.object({ DEFAULT: z.number().min(1) }),
+        cp_plus_description: z.object({DEFAULT: z.number().min(1)}),
         summer: z.boolean(),
         winter: z.boolean(),
 

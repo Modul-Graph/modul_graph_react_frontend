@@ -16,12 +16,12 @@ const formMapping = [
     [ModuleAreaNameSchema, FormTextField] as const,
 ] as const;
 
-const Form = createTsForm(formMapping, { FormComponent: FormContainer });
+const Form = createTsForm(formMapping, {FormComponent: FormContainer});
 
-export default function ({
-    sc_name,
-    onSaved,
-}: {
+export default function CreateModuleAreaForm({
+                             sc_name,
+                             onSaved,
+                         }: {
     sc_name: string;
     onSaved?: () => void;
 }) {
@@ -31,34 +31,34 @@ export default function ({
     });
 
     return (
-        <Form
-                form={form}
-            props={{
-                filled_by_module: {
-                    sc_name: sc_name,
-                },
-            }}
-            onSubmit={async (d) => {
+            <Form
+                    form={form}
+                    props={{
+                        filled_by_module: {
+                            sc_name: sc_name,
+                        },
+                    }}
+                    onSubmit={async (d) => {
 
-                const moduleAreas = await apiClient.getAllModuleAreas();
+                        const moduleAreas = await apiClient.getAllModuleAreas();
 
-                const { name, cp, filled_by_module } = d;
+                        const {name, cp, filled_by_module} = d;
 
-                if (moduleAreas.includes(name)) {
-                    form.setError("name", {message: "WPF Name existiert bereits", type: "value"})
-                    return;
-                }
+                        if (moduleAreas.includes(name)) {
+                            form.setError("name", {message: "WPF Name existiert bereits", type: "value"})
+                            return;
+                        }
 
-                await apiClient.createModuleArea(
-                    {
-                        name,
-                        cp,
-                        filled_by_module,
-                    },
-                );
-                onSaved?.();
-            }}
-            schema={ModuleAreaUpdateSchema}
-        />
+                        await apiClient.createModuleArea(
+                                {
+                                    name,
+                                    cp,
+                                    filled_by_module,
+                                },
+                        );
+                        onSaved?.();
+                    }}
+                    schema={ModuleAreaUpdateSchema}
+            />
     );
 }

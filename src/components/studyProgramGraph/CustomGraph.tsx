@@ -5,7 +5,6 @@ import {CustomEdge, CustomNode, CustomNodePositionArgs} from "@/components/study
 import React, {useEffect} from "react";
 import {convertNodes} from "@/components/studyProgramGraph/NodeRowAssignment";
 import {myTheme} from "@/components/studyProgramGraph/ITheme";
-import dynamic from "next/dynamic";
 
 type CustomLayoutInputs = LayoutOverrides & {
     getNodePosition: (id: string, args: CustomNodePositionArgs) => { x: number, y: number, z: number };

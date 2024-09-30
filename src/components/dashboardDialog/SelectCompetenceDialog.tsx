@@ -5,7 +5,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import {Button, ListItem, ListItemText} from "@mui/material";
 
-export default function SelectWPFDialog({open, setOpen, onSelection, title, actionName}: {
+export default function SelectCompetenceDialog({open, setOpen, onSelection, title, actionName}: {
     open: boolean,
     setOpen: Dispatch<SetStateAction<boolean>>,
     sc_name: string,
@@ -14,28 +14,28 @@ export default function SelectWPFDialog({open, setOpen, onSelection, title, acti
     actionName: string
 }) {
 
-    const [selectedWPF, setSelectedWPF] = useState<string | null>(null)
+    const [selectedCompetence, setSelectedCompetence] = useState<string | null>(null)
 
-    const {data} = apiHooks.useGetAllWPFModuleAreas()
+    const {data} = apiHooks.useGetAllCompetences()
 
     return <GenericDialog
             title={title}
             buttons={
                 <Button
                         onClick={() => {
-                            if (selectedWPF) onSelection(selectedWPF)
-                            setSelectedWPF(null)
+                            if (selectedCompetence) onSelection(selectedCompetence)
+                            setSelectedCompetence(null)
                         }}
-                        disabled={!selectedWPF}
+                        disabled={!selectedCompetence}
                 >{actionName}</Button>}
             open={open}
             setOpen={setOpen}>
-        <Autocomplete renderInput={(params) => <TextField {...params} label="WPF"/>}
+        <Autocomplete renderInput={(params) => <TextField {...params} label="Kompetenz"/>}
 
                       getOptionLabel={(option) => option}
-                      value={selectedWPF}
+                      value={selectedCompetence}
                       onChange={(_, value) => {
-                          setSelectedWPF(value)
+                          setSelectedCompetence(value)
                       }}
                       renderOption={({key, ...props}, option: string) => {
                           return <ListItem key={key} {...props}>

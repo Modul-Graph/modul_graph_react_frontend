@@ -26,16 +26,16 @@ export default function CompetenceTimeTable({sc}: { sc: string }) {
     const [table_data, column_key, row_key] = prepareCompetenceTimeTableData(data)
     return <>
         <CompetenceTable<TCompetenceTimeTableCell, number, string> data={table_data} column_key={column_key}
-                                                                row_key={row_key} orderColumnKeys={(a, b) => a - b}
-                                                                orderRowKeys={(a, b) => {
-                                                                    if (a == "WPF") {
-                                                                        return 1
-                                                                    } else if (b == "WPF") {
-                                                                        return -1
-                                                                    } else {
-                                                                        return a.localeCompare(b)
-                                                                    }
-                                                                }}
+                                                                   row_key={row_key} orderColumnKeys={(a, b) => a - b}
+                                                                   orderRowKeys={(a, b) => {
+                                                                       if (a == "WPF") {
+                                                                           return 1
+                                                                       } else if (b == "WPF") {
+                                                                           return -1
+                                                                       } else {
+                                                                           return a.localeCompare(b)
+                                                                       }
+                                                                   }}
                                                                    cellRenderer={(T) => <Box
                                                                            sx={{cursor: "pointer"}}
                                                                            onClick={() => {
@@ -47,7 +47,7 @@ export default function CompetenceTimeTable({sc}: { sc: string }) {
                                                                                    setShowDialog(true)
                                                                                }
                                                                            }}>{T.name}</Box>}
-                                                                columnHeader={"Semester"} rowHeader={"Kompetenz"}/>
+                                                                   columnHeader={"Semester"} rowHeader={"Kompetenz"}/>
         <GenericDialog sx={{
             minHeight: "80vh",
             minWidth: "60vw"

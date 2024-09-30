@@ -1,6 +1,5 @@
 'use client'
 import {StudentHeader} from "@/components/dashboardHeader/StudentHeader";
-import {StudentFooter} from "@/components/dashboardFooter/StudentFooter";
 import Box from "@mui/material/Box";
 import {Stack} from "@mui/material";
 import {GraphSkeleton} from "@/components/placeholder/GraphSkeleton";
@@ -15,9 +14,8 @@ export default function StudentViewPage({params}: { params: RouteType }) {
     const [competences, setCompetences] = useState<string[]>([])
 
 
-
     return (
-            <Box height={1} >
+            <Box height={1}>
                 <Stack height={1}>
                     <StudentHeader sc_name={decodeURI(params.standardCurriculum)}
                                    onCompetenceChange={(v) => setCompetences(v)}/>

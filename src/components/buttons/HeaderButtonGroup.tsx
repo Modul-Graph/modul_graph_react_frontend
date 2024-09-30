@@ -11,6 +11,8 @@ import UpdateWPFDialog from "@/components/dashboardDialog/UpdateWPFDialog";
 import {useRouter} from "next/navigation";
 import SelectWPFDialog from "@/components/dashboardDialog/SelectWPFDialog";
 import CreateCPClusterDialog from "@/components/dashboardDialog/CreateCPClusterDialog";
+import CreateCompetenceFormDialog from "@/components/dashboardDialog/CreateCompetenceFormDialog";
+import SelectCompetenceDialog from "@/components/dashboardDialog/SelectCompetenceDialog";
 
 export const HeaderButtonGroup = ({sc_name}: { sc_name: string }) => {
     const [createModuleDiagOpen, setCreateModuleDiagOpen] = useState(false)
@@ -24,21 +26,30 @@ export const HeaderButtonGroup = ({sc_name}: { sc_name: string }) => {
     const [editWPFDialogOpen, setEditWPFDialogOpen] = useState(false)
     const [WPFDeleteDialogOpen, setWPFDeleteDialogOpen] = useState(false)
     const [createCPClusterDialogOpen, setCreateCPClusterDialogOpen] = useState(false)
+    const [createCompetenceDialogOpen, setCreateCompetenceDialogOpen] = useState(false)
+    const [removeCompetenceDialogOpen, setRemoveCompetenceDialogOpen] = useState(false)
 
 
-    const router = useRouter()
+    useRouter();
 
 
     return (<>
-            <ButtonGroup variant={"contained"} disableElevation={true} >
-                <Button color={"primary"} onClick={() => setCreateModuleDiagOpen(true)}>Modul hinzufügen</Button>
-                <Button color={"primary"} onClick={() => setSelectUpdateModuleDiagOpen(true)}>Modul bearbeiten</Button>
-                <Button color={"error"} onClick={() => setDeleteSelectModuleDiagOpen(true)}>Modul löschen</Button>
-                <Button color={"primary"} onClick={() => setCreateWPFDialogOpen(true)}>WPF erstellen</Button>
-                <Button color={"primary"} onClick={() => setSelectWPFDialogOpen(true)}>WPF bearbeiten</Button>
-                <Button color={"error"} onClick={() => setWPFDeleteDialogOpen(true)}>WPF löschen</Button>
-                <Button color={"primary"} onClick={() => setCreateCPClusterDialogOpen(true)}>CP Cluster erstellen</Button>
-            </ButtonGroup>
+                <ButtonGroup variant={"contained"} disableElevation={true}>
+                    <Button color={"primary"} onClick={() => setCreateModuleDiagOpen(true)}>Modul hinzufügen</Button>
+                    <Button color={"primary"} onClick={() => setSelectUpdateModuleDiagOpen(true)}>Modul
+                        bearbeiten</Button>
+                    <Button color={"error"} onClick={() => setDeleteSelectModuleDiagOpen(true)}>Modul löschen</Button>
+                    <Button color={"primary"} onClick={() => setCreateWPFDialogOpen(true)}>WPF erstellen</Button>
+                    <Button color={"primary"} onClick={() => setSelectWPFDialogOpen(true)}>WPF bearbeiten</Button>
+                    <Button color={"error"} onClick={() => setWPFDeleteDialogOpen(true)}>WPF löschen</Button>
+                    <Button color={"primary"} onClick={() => setCreateCPClusterDialogOpen(true)}>CP Cluster
+                        erstellen</Button>
+                    <Button color={"primary"} onClick={() => setCreateCompetenceDialogOpen(true)}>Kompetenz
+                        erstellen</Button>
+                    <Button color={"error"} onClick={() => {
+                        setRemoveCompetenceDialogOpen(true)
+                    }}>Kompetenz Löschen</Button>
+                </ButtonGroup>
                 <CreateModuleDialog open={createModuleDiagOpen} setOpen={setCreateModuleDiagOpen} sc_name={sc_name}/>
                 <SelectModuleDialog
                         open={selectUpdateModuleDiagOpen}
@@ -78,7 +89,9 @@ export const HeaderButtonGroup = ({sc_name}: { sc_name: string }) => {
                                              setOpen={setEditWPFDialogOpen} onSaved={() => {
                                 setEditWPFDialogOpen(false)
                                 setWpfName(null)
-                                router.refresh()
+                                if (location) {
+                                    location.reload()
+                                }
                             }}/> : null
                 }
 
@@ -87,13 +100,34 @@ export const HeaderButtonGroup = ({sc_name}: { sc_name: string }) => {
                                  onSelection={async (v) => {
                                      await apiClient.deleteModuleArea(undefined, {params: {moduleAreaName: v}})
                                      setWPFDeleteDialogOpen(false)
-                                     router.refresh()
+                                     if (location) {
+                                         location.reload()
+                                     }
                                  }}/>
                 <CreateCPClusterDialog open={createCPClusterDialogOpen} setOpen={setCreateCPClusterDialogOpen}
                                        onSave={() => {
                                            setCreateCPClusterDialogOpen(false)
-                                           router.refresh()
+                                           if (location) {
+                                               location.reload()
+                                           }
                                        }}/>
+                <CreateCompetenceFormDialog open={createCompetenceDialogOpen} setOpen={setCreateCompetenceDialogOpen}
+                                            onSuccess={() => {
+                                                setCreateCompetenceDialogOpen(false)
+                                                if (location) {
+                                                    location.reload()
+                                                }
+                                            }}/>
+                <SelectCompetenceDialog open={removeCompetenceDialogOpen} setOpen={setRemoveCompetenceDialogOpen}
+                                        sc_name={sc_name} title={"Kompetenz Löschen (Permanent)"} actionName={"Löschen"}
+                                        onSelection={async (v) => {
+                                            await apiClient.deleteCompetence(undefined, {params: {name: v}})
+
+                                            if (location) {
+                                                location.reload()
+                                            }
+
+                                        }}/>
             </>
     )
 }

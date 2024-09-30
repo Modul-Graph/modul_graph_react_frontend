@@ -1,6 +1,7 @@
 import {List, ListItem, ListItemText, Stack} from "@mui/material";
 import InertTextField from "@/components/dashboardDialog/InertTextField";
 import {CpCluster} from "@/lib/zod/teacherScTableSchemas";
+import {createKey} from "next/dist/shared/lib/router/router";
 
 export default function CPClusterInfoView({data}: { data: CpCluster }) {
     return <Stack paddingTop={2} gap={2}>
@@ -9,7 +10,7 @@ export default function CPClusterInfoView({data}: { data: CpCluster }) {
         <List subheader={"Modulzellen im CP Cluster"}>
 
             {
-                data.cells.map(cell => <ListItem><ListItemText primary={cell.name}
+                data.cells.map(cell => <ListItem key={createKey()}><ListItemText primary={cell.name}
                                                                secondary={`${cell.sem}. Semester - ${cell.cp} CP`}/></ListItem>)
             }
         </List>

@@ -1,4 +1,4 @@
-import {PflichtModuleUpdateSchema, PflichtModuleUpdateType} from "@/lib/zod/ModuleSchemas";
+import {PflichtModuleUpdateSchema} from "@/lib/zod/ModuleSchemas";
 import {Divider, Stack, Typography} from "@mui/material";
 import {DeepPartial, useForm} from "react-hook-form";
 import {z} from "zod";
@@ -39,7 +39,7 @@ const formMapping = [
 
 const Form = createTsForm(formMapping, {FormComponent: FormContainer});
 
-export default function ModuleForm({sc_name, defaultValues, onSubmit, form}: {
+export default function ModuleForm({defaultValues, onSubmit, form}: {
     sc_name: string,
     defaultValues?: DeepPartial<z.infer<UnwrapEffects<typeof PflichtModuleUpdateSchema>>>,
     onSubmit: RTFFormSubmitFn<typeof PflichtModuleUpdateSchema>

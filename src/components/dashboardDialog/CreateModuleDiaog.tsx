@@ -1,7 +1,6 @@
 import GenericDialog from "@/components/dashboardDialog/GenericDialog";
-import {Dispatch, SetStateAction, useState} from "react";
+import {Dispatch, SetStateAction} from "react";
 import CreateModule from "@/components/form/module/CreateModule";
-import {Button} from "@mui/material";
 
 export default function CreateModuleDialog({open, setOpen, sc_name}: {
     open: boolean,

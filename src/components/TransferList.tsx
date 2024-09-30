@@ -11,7 +11,7 @@ import Grid2 from "@mui/material/Grid2";
 import Button from "@mui/material/Button";
 import {Alert} from "@mui/material";
 
-export default function ({
+export default function TransferList({
                              titleLeft,
                              titleRight,
                              initialRight,
@@ -70,7 +70,7 @@ export default function ({
 
     useEffect(() => {
         onChange([...right]);
-    }, [right]);
+    }, [right, onChange]);
 
     const customList = (title: React.ReactNode, items: readonly string[]) => (
             <Card>

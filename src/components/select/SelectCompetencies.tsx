@@ -10,7 +10,7 @@ import theme from "@/theme";
 import {apiHooks} from "@/lib/connectivity/client";
 
 
-export const SelectCompetencies = ({onChange, sc_name}: {
+export const SelectCompetencies = ({onChange}: {
     onChange: (v: string[]) => void,
     sc_name: string
 }) => {
@@ -18,8 +18,7 @@ export const SelectCompetencies = ({onChange, sc_name}: {
     const {
         data,
         isLoading,
-        error,
-        status
+        error
     } = apiHooks.useGetAllCompetences({}, {refetchOnMount: false});
 
 
@@ -27,7 +26,7 @@ export const SelectCompetencies = ({onChange, sc_name}: {
 
     useEffect(() => {
         onChange(competenceName);
-    }, [competenceName]);
+    }, [competenceName, onChange]);
 
     if (isLoading || error) return <></>;
 
@@ -48,7 +47,7 @@ export const SelectCompetencies = ({onChange, sc_name}: {
 
             <>
                 <FormControl sx={{m: 1, width: 250}} size="small">
-                    <InputLabel color={"secondary"} >Kompetenzen auswählen</InputLabel>
+                    <InputLabel color={"secondary"}>Kompetenzen auswählen</InputLabel>
                     <Select
                             variant={"outlined"}
                             multiple
