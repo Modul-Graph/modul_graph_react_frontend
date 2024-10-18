@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     experimental: {
-        typedRoutes: true,
+        typedRoutes: true
     },
     publicRuntimeConfig: {
-        API_URL: 'http://localhost:8080/',
+        API_URL: process.env.NEXT_PUBLIC_API_URL,
     },
     output: 'standalone'
 }

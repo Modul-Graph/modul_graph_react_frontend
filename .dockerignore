@@ -1,2 +1,8 @@
-node_modules
+.editorconfig
 .next
+mockoon
+node_modules
+.gitignore
+Dockerfile
+docker-compose.yml
+.github
