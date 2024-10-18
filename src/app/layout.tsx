@@ -7,6 +7,7 @@ import theme from "@/theme";
 import {QueryClient} from "@tanstack/react-query";
 import ReactQueryProvider from "@/app/ReactQueryProvider";
 import React from "react";
+import {PublicEnvScript} from "next-runtime-env";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -23,6 +24,9 @@ export default function RootLayout({
 }>) {
     return (
             <html lang="en" style={{height: "100%"}}>
+            <head>
+                <PublicEnvScript />
+            </head>
             <body className={inter.className} style={{height: "100%", margin: 0, padding: 0}}>
             <AppRouterCacheProvider>
                 <ThemeProvider theme={theme}>

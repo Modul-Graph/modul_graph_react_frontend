@@ -1,3 +1,5 @@
+'use client'
+
 import {Zodios} from "@zodios/core";
 import doabilityResponseSchema from "@/lib/zod/doabilityResponseSchema";
 import {competenceTimeTableSchema} from "@/lib/zod/competenceTimeTableSchema";
@@ -12,9 +14,10 @@ import {ModuleResponseSchema} from "@/lib/zod/moduleResponseSchema";
 import {createClusterSchema, updateClusterSchema} from "@/lib/zod/cpClusterSchemas";
 import {ModuleAreaResponseSchema} from "@/lib/zod/moduleAreaResponseSchema";
 import getConfig from 'next/config'
+import {env} from "next-runtime-env";
 
 
-const API_URL: string = getConfig().publicRuntimeConfig.API_URL;
+const API_URL: string = env('NEXT_PUBLIC_API_URL') ?? "";
 
 const apiClient = new Zodios(API_URL, [
     {
