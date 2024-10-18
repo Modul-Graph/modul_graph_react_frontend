@@ -3,7 +3,7 @@ services:
         ports:
             - "3000:3000"
         environment:
-            NEXT_PUBLIC_API_URL: http://localhost:8080/api/v1
+            NEXT_PUBLIC_API_URL: http://localhost:8081/api/v1
             NODE_ENV: PRODUCTION
         image: ghcr.io/modul-graph/modul_graph_react_frontend:latest
         build:
