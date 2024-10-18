@@ -1,6 +1,5 @@
 import {Zodios} from "@zodios/core";
 import doabilityResponseSchema from "@/lib/zod/doabilityResponseSchema";
-import {getClientEnvironment} from "@/lib/zod/environment";
 import {competenceTimeTableSchema} from "@/lib/zod/competenceTimeTableSchema";
 import {scGraphResponseSchema, transformSCSuggestionToGraph} from "@/lib/zod/scGraphResponseSchema";
 import {z} from "zod";
@@ -12,8 +11,10 @@ import {CreateModuleSchema, ModuleSchemaBase} from "@/lib/zod/ModuleSchemas";
 import {ModuleResponseSchema} from "@/lib/zod/moduleResponseSchema";
 import {createClusterSchema, updateClusterSchema} from "@/lib/zod/cpClusterSchemas";
 import {ModuleAreaResponseSchema} from "@/lib/zod/moduleAreaResponseSchema";
+import getConfig from 'next/config'
 
-const API_URL = getClientEnvironment().NEXT_PUBLIC_API_URL;
+
+const API_URL: string = getConfig().publicRuntimeConfig.API_URL;
 
 const apiClient = new Zodios(API_URL, [
     {

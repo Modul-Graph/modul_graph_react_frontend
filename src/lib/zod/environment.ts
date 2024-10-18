@@ -31,6 +31,9 @@ export const getClientEnvironment = (): ClientEnvironment => {
     const clientEnvironment: ClientEnvironment = {
         NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL ?? ""
     }
+
+    console.log(clientEnvironment)
+
     return zodClientEnvironmentSchema.parse(clientEnvironment)
 }
 
